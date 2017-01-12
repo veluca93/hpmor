@@ -115,7 +115,7 @@
 %
 % Subsection
 %
-\setsubsecheadstyle{\bfseries\scshape} % Subsection titles in small caps
+\setsubsecheadstyle{\scshape} % Subsection titles in small caps
 \beforesubsecskip=1.5\baselineskip % skip before the heading
 \aftersubsecskip=.5\baselineskip plus .5\baselineskip % skip after the heading
 \setsubsechook{\nopagebreak\vskip 0pt plus 3\baselineskip}
@@ -231,7 +231,7 @@
 %
 % Logical formatting macros
 \newcommand*{\parsel}[1]{\textit{#1}} % Parseltongue
-\newcommand*{\prophecy}[1]{\textbf{\textit{\textsc{#1}}}} % Prophecies
+\newcommand*{\prophecy}[1]{\textsc{#1}} % Prophecies
 \newcommand*{\headline}[1]{\begin{center}\textsc{#1}\end{center}} % Newspaper headlines
 \newcommand*{\inlineheadline}[1]{\textsc{#1}} % Newspaper headlines inline with text
 %
@@ -263,7 +263,7 @@
 \newcommand{\hackChXV}[1]{
 \vskip 0pt plus .5cm
 \begin{center}
-\underline{\textbf{\MakeUppercase{#1}}}
+\underline{\MakeUppercase{#1}}
 \end{center}
 \vskip 0pt plus .5cm
 }
