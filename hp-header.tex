@@ -43,6 +43,7 @@
 % Font setup: URW Garamond No. 8
 %
 \setmainfont[
+, ExternalLocation=fonts/garamond/
 , Ligatures={Common,TeX}
 , UprightFont=*-Regular
 , ItalicFont=*-Italic
@@ -51,13 +52,13 @@
 ]{GaramondNo8}
 %
 % Chapters, headings, etc.: Lumos (extra spacing looks much better)
-\newfontface\hp[ExternalLocation, LetterSpace=18.0, WordSpace=1.5]{Lumos}
+\newfontface\hp[ExternalLocation=fonts/, LetterSpace=18.0, WordSpace=1.5]{Lumos}
 \newcommand{\lumos}[1]{{\hp\MakeUppercase{#1}}}
 % Chapter numbers: Lumos (extreme spacing for effect)
-\newfontface\hpchap[ExternalLocation, LetterSpace=80.0, WordSpace=2.0]{Lumos}
+\newfontface\hpchap[ExternalLocation=fonts/, LetterSpace=80.0, WordSpace=2.0]{Lumos}
 %
 % Font used to draw the magic star
-\newfontface\starfont[ExternalLocation]{Miscelanea.ttf}
+\newfontface\starfont[ExternalLocation=fonts/]{Miscelanea.ttf}
 %
 % Draws a “magic star”, used as a decoration
 \newcommand*{\Star}{{\starfont{}*}}
@@ -275,22 +276,22 @@
 %
 \newlength{\Auxa}
 \newcommand{\hackChDXIVa}{
-\fontspec[ExternalLocation]{RingBearer}
+\fontspec[ExternalLocation=fonts/]{RingBearer}
 \settowidth{\versewidth}{\mbox{the}}
 Lord\scalebox{.40}{\parbox[b]{\versewidth}{
 	\centering of\\\nointerlineskip\vskip 4pt the}}Ratîonalît\raisebox{-.32ex}{Y}
 }
 %
 \newcommand{\hackChDXIVb}{
-\fontspec[ExternalLocation]{NarniaBLL}
+\fontspec[ExternalLocation=fonts/]{NarniaBLL}
 456}
 %
 \newcommand{\hackChDXIVd}{
-\fontspec[ExternalLocation]{Thundercats}
+\fontspec[ExternalLocation=fonts/]{Thundercats}
 ThunderSmarts}
 %
 \newcommand{\hackChDXIVh}{
-\fontspec[ExternalLocation]{Twilight}
+\fontspec[ExternalLocation=fonts/]{Twilight}
 Utilitarian Twilight}
 %
 %
