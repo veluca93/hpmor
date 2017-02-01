@@ -1,6 +1,6 @@
 \documentclass[11pt,extrafontsizes,twoside,openany,final]{memoir}
 
-% THIS DOCUMENT REQUIRES XeLaTeX TO COMPILE!
+% THIS DOCUMENT REQUIRES LuaLaTeX TO COMPILE! XeLaTeX should work but formatting might be subpar.
 
 \usepackage{lettrine}		% Used for the fancy caps at the start of each chapter
 \usepackage{xspace}		    % Takes care of spaces after macros
@@ -8,9 +8,11 @@
 \usepackage[protrusion=basictext]{microtype}
                             % Makes right margin neater by letting certain punctuation protrude slightly
 \usepackage{fontspec}		% For the many fonts
-\usepackage{xunicode}       % Probably needed for something
-\usepackage{xstring}        % Needed for something
-\usepackage{censor}         % Used in "Time Pressure" to redact Hermione's name
+
+%\usepackage{xunicode}       % Probably needed for something
+
+\usepackage{xstring}        % Needed for \IfInteger...
+\usepackage{censor}         % Used in "Time Pressure" to redact a name
 \usepackage[useregional]{datetime2}
                             % Used for the build timestamp in the colophon
 
@@ -183,44 +185,44 @@
 %
 % XeTeX character classes (hacks)
 %
-\newXeTeXintercharclass \punctuationClass
-\XeTeXcharclass `\’ \punctuationClass
-\XeTeXcharclass `\‘ \punctuationClass
-\XeTeXcharclass `\“ \punctuationClass
-\XeTeXcharclass `\” \punctuationClass
-\XeTeXcharclass `\. \punctuationClass
-\XeTeXcharclass `\, \punctuationClass
-\XeTeXcharclass `\: \punctuationClass
-\XeTeXcharclass `\? \punctuationClass
-\XeTeXcharclass `\! \punctuationClass
-\XeTeXcharclass `\: \punctuationClass
-%
-\newXeTeXintercharclass \digitClass
-\XeTeXcharclass `\0 \digitClass
-\XeTeXcharclass `\1 \digitClass
-\XeTeXcharclass `\2 \digitClass
-\XeTeXcharclass `\3 \digitClass
-\XeTeXcharclass `\4 \digitClass
-\XeTeXcharclass `\5 \digitClass
-\XeTeXcharclass `\6 \digitClass
-\XeTeXcharclass `\7 \digitClass
-\XeTeXcharclass `\8 \digitClass
-\XeTeXcharclass `\9 \digitClass
-%
-\newXeTeXintercharclass \dashClass
-\XeTeXcharclass `\— \dashClass % em
-\XeTeXcharclass `\– \dashClass % en
-%
-\newXeTeXintercharclass \hyphenClass
-\XeTeXcharclass `\- \hyphenClass % hyphen
-%
-\XeTeXinterchartokenstate = 1 % enable functionality
-%
-% Automatic spacing around em dashes, allows line breaks after
-\XeTeXinterchartoks \dashClass 0 = {\discretionary{}{}{\,}}
-\XeTeXinterchartoks 0 \dashClass = {\,}
-\XeTeXinterchartoks \dashClass 255 = {\discretionary{}{}{\,}}
-\XeTeXinterchartoks 255 \dashClass = {\,}
+% \newXeTeXintercharclass \punctuationClass
+% \XeTeXcharclass `\’ \punctuationClass
+% \XeTeXcharclass `\‘ \punctuationClass
+% \XeTeXcharclass `\“ \punctuationClass
+% \XeTeXcharclass `\” \punctuationClass
+% \XeTeXcharclass `\. \punctuationClass
+% \XeTeXcharclass `\, \punctuationClass
+% \XeTeXcharclass `\: \punctuationClass
+% \XeTeXcharclass `\? \punctuationClass
+% \XeTeXcharclass `\! \punctuationClass
+% \XeTeXcharclass `\: \punctuationClass
+% %
+% \newXeTeXintercharclass \digitClass
+% \XeTeXcharclass `\0 \digitClass
+% \XeTeXcharclass `\1 \digitClass
+% \XeTeXcharclass `\2 \digitClass
+% \XeTeXcharclass `\3 \digitClass
+% \XeTeXcharclass `\4 \digitClass
+% \XeTeXcharclass `\5 \digitClass
+% \XeTeXcharclass `\6 \digitClass
+% \XeTeXcharclass `\7 \digitClass
+% \XeTeXcharclass `\8 \digitClass
+% \XeTeXcharclass `\9 \digitClass
+% %
+% \newXeTeXintercharclass \dashClass
+% \XeTeXcharclass `\— \dashClass % em
+% \XeTeXcharclass `\– \dashClass % en
+% %
+% \newXeTeXintercharclass \hyphenClass
+% \XeTeXcharclass `\- \hyphenClass % hyphen
+% %
+% \XeTeXinterchartokenstate = 1 % enable functionality
+% %
+% % Automatic spacing around em dashes, allows line breaks after
+% \XeTeXinterchartoks \dashClass 0 = {\discretionary{}{}{\,}}
+% \XeTeXinterchartoks 0 \dashClass = {\,}
+% \XeTeXinterchartoks \dashClass 255 = {\discretionary{}{}{\,}}
+% \XeTeXinterchartoks 256 \dashClass = {\,}
 
 %
 % Style definitions and hacks
