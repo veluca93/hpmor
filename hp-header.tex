@@ -22,8 +22,11 @@
 	pdfkeywords={Harry Potter, rationality},pdfencoding=auto
 ]{hyperref}                 % Hyperlinks and bookmarks in PDF
 
-\usepackage[autostyle=false, style=english]{csquotes}
-\MakeOuterQuote{"}	        % Automatic curly quotes
+\usepackage{ellipsis}        % Must be loaded after fontspec and hyperref
+\renewcommand{\ellipsisgap}{.16667em}
+
+\usepackage[style=english]{csquotes}
+\MakeOuterQuote{"}	    % Automatic open and closing quotes
 
 \usepackage{fmtcount}       % Provides \NUMBERstringnum
 \usepackage{graphicx}       % for \reflectbox in header
@@ -227,9 +230,14 @@
 %
 % Style definitions and hacks
 %
-% In the text, em dashes are encoded explicitly
-% and the ellipsis is encoded with {\el}
-\newcommand*{\el}{\,.\,.\,.} % Ellipsis definition
+% In the text, the ellipsis is encoded with \el, which we define here to \dots
+% preceded by the same amount of space as used between the dots (see the
+% ellipsis package configuration above). Note that the ellpsis package is
+% necessary for \dots to generate three spaced dots when compiling with
+% lualatex or xelatex (otherwidse one gets a single glyph of 3 packed dots). We
+% use \dots instead of \ldots because of a buggy interaction with the amsmath
+% package.
+\newcommand*{\el}{\kern \ellipsisgap\dots} % Ellipsis definition
 %
 % Logical formatting macros
 \newcommand*{\parsel}[1]{\textit{#1}} % Parseltongue
