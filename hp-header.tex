@@ -237,9 +237,9 @@
 \newcommand*{\headline}[1]{\begin{center}\textsc{#1}\end{center}} % Newspaper headlines
 \newcommand*{\inlineheadline}[1]{\textsc{#1}} % Newspaper headlines inline with text
 %
-% Macros to format certain words and abbreviations automatically
-\newcommand*{\AM}{{\scshape am}\xspace} % AM in small caps, for time of day
-\newcommand*{\PM}{{\scshape pm}\xspace} % PM in small caps, for time of day
+% Macros for time of day. Using '/' suffix to avoid eating a following space.
+\def\AM/{{\,\scshape am}} % AM in small caps
+\def\PM/{{\,\scshape pm}} % PM in small caps
 %
 % Makes a written note in italics (first used, Hogwarts acceptance letter)
 \newenvironment{writtenNote}{%\parindent=1cm%
