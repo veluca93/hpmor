@@ -10,8 +10,6 @@
 
 \usepackage{xstring}        % Needed for \IfInteger...
 \usepackage{censor}         % Used in "Time Pressure" to redact a name
-\usepackage[useregional]{datetime2}
-                            % Used for the build timestamp in the colophon
 
 \usepackage[bookmarks=true,unicode=true,pdfborder={0 0 0},
 	pdftitle={Harry Potter and the Methods of Rationality},
@@ -185,7 +183,7 @@
 \makepsmarks{headings}{%
 \createmark{chapter}{right}{shownumber}{\@chapapp\ }{. \ }}
 \makeatother
-%
+
 % Style definitions and hacks
 %
 % In the text, the ellipsis is encoded with \el, which we define here to \dots
@@ -251,8 +249,8 @@ ThunderSmarts}
 \newcommand{\hackChDXIVh}{
 \fontspec[ExternalLocation=fonts/]{Twilight}
 Utilitarian Twilight}
-%
-%
+
+
 % Hyphenation corrections
 %
 \hyphenation{Her-mi-o-ne Gran-ger bru-shes Gryf-fin-dor Le-strange 
