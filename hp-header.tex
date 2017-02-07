@@ -115,13 +115,8 @@
 }
 \chapterstyle{evans}% Actually implements the above chapter style code
 
-\newcommand*{\hpmorchapbreak}{\linebreak} % Allows the break to be disabled in TOC
-\newcommand{\wrapchapter}[2]{\chapter[% Custom linebreak for long chapter titles
-        \texorpdfstring{%
-        #1\protect\hpmorchapbreak #2}{% Header
-        #1 #2}]{% Bookmark for PDF
-        #1\protect\hpmorchapbreak #2}}% First page of chapter
-
+% Command to choose where to break the line in long chapter titles
+\newcommand*{\wrapchapter}[2]{\chapter[#1 #2]{#1\protect\linebreak #2}}
 
 %
 % Subsection
