@@ -113,8 +113,8 @@
 		\vskip 1cm \begin{center}\chaptitlefont \MakeUppercase{##1}\end{center}\par \vskip 1cm}
 	
 	\renewcommand*{\chaptermark}[1]{% "CHAPTER ONE" and "A DAY OF..."
-		\markboth{\scriptsize\MakeUppercase{##1}}{%
-		  \scriptsize\MakeUppercase{\chaptername}~\thechapter}}
+		\markboth{\MakeUppercase{##1}}{%
+		  \MakeUppercase{\chaptername}~\thechapter}}
 
 	\renewcommand*{\tocmark}{\markboth{}{\MakeUppercase{Contents}}}
 	
@@ -186,9 +186,9 @@
 % Right side header: chapter name
 % Decorative stars in corners
 \makeevenhead{headings}{}{
-	\hp\hyperref[contents]{\small\rightmark}}{}
+	\hp\hyperref[contents]{\scriptsize\rightmark}}{}
 \makeatletter
-\makeoddhead{headings}{}{\parbox{99mm}{\centering\hp\small\leftmark}}{}
+\makeoddhead{headings}{}{\parbox{99mm}{\centering\hp\scriptsize\leftmark}}{}
 \copypagestyle{cleared}{empty}
 \makepsmarks{headings}{%
 \createmark{chapter}{right}{shownumber}{\@chapapp\ }{. \ }}
