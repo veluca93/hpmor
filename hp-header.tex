@@ -168,7 +168,7 @@
 %
 % Page numbering, footer, header (confusing)
 %
-\newcommand{\pageInFooter}{{\footnotesize\Star\ \makebox[2em][c]{\thepage\,}\Star}}
+\newcommand{\pageInFooter}{{\footnotesize\makebox[2em][c]{\thepage}}}
 % Page number centered between two small stars in footer
 % Same on all pages in body text
 \makeevenfoot{plain}{}{\pageInFooter}{}
@@ -179,10 +179,10 @@
 % Left side header: chapter number
 % Right side header: chapter name
 % Decorative stars in corners
-\makeevenhead{headings}{\Stars}{
-	\hp\hyperref[contents]{\small\rightmark}}{\reflectbox{\Stars}}
+\makeevenhead{headings}{}{
+	\hp\hyperref[contents]{\small\rightmark}}{}
 \makeatletter
-\makeoddhead{headings}{\Stars}{\parbox{99mm}{\centering\hp\small\leftmark}}{\reflectbox{\Stars}}
+\makeoddhead{headings}{}{\parbox{99mm}{\centering\hp\small\leftmark}}{}
 \copypagestyle{cleared}{empty}
 \makepsmarks{headings}{%
 \createmark{chapter}{right}{shownumber}{\@chapapp\ }{. \ }}
