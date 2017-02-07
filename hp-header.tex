@@ -8,8 +8,6 @@
                             % Makes right margin neater by letting certain punctuation protrude slightly
 \usepackage{fontspec}		% For the many fonts
 
-%\usepackage{xunicode}       % Probably needed for something
-
 \usepackage{xstring}        % Needed for \IfInteger...
 \usepackage{censor}         % Used in "Time Pressure" to redact a name
 \usepackage[useregional]{datetime2}
@@ -30,6 +28,12 @@
 \usepackage{fmtcount}       % Provides \NUMBERstringnum
 \usepackage{graphicx}       % for \reflectbox in header
 \usepackage[normalem]{ulem} % For \censor in chapter 64
+
+% \overfullrule=5pt % Mark overfull hbox with black rectangle
+
+% Make framed boxes (for debugging) take no additional space
+% \fboxrule=1pt
+% \fboxsep=-1pt
 
 %
 % Set-up page sizes and margins
@@ -214,16 +218,6 @@
 % Makes a letter address and closing, for use with above writtenNote environment
 \newcommand{\letterAddress}[1]{\pagebreak[1]\noindent{}#1\nopagebreak[4]\par}
 \newcommand{\letterClosing}[2][\vskip 1\baselineskip]{\nopagebreak[4]#1\par\nopagebreak[5]\noindent#2}
-%
-% Makes an inscription in small caps (first used, Gringotts)
-\newenvironment{inscription}{%\parindent=1cm%
-	\vskip 1\baselineskip plus .5\baselineskip minus .5\baselineskip%
-	\begin{adjustwidth}{4\parindent}{\parindent}\scshape}
-	{\end{adjustwidth}\vskip 1\baselineskip plus .5\baselineskip minus .5\baselineskip}
-%
-% Not sure what these are included for:
-\fboxrule=1pt
-\fboxsep=-1pt
 %
 % Whiteboard in chapter 15 "Transfiguration is not permanent!"
 \newcommand{\hackChXV}[1]{
