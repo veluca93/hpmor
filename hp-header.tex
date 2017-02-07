@@ -36,14 +36,24 @@
 %
 % Set-up page sizes and margins
 %
-\setstocksize{20.5cm}{13.5cm}
-\settrimmedsize{\stockheight}{\stockwidth}{*}
-\settypeblocksize{6.46in}{4.22in}{*}
-\setlrmargins{*}{*}{0.8}
-\setulmargins{*}{*}{0.8}
-\setheadfoot{\topskip + \baselineskip}{2\baselineskip}
-\checkandfixthelayout[fixed]
-\fixdvipslayout % fix for xelatex
+%\setstocksize{205mm}{135mm}
+%\settrimmedsize{\stockheight}{\stockwidth}{*}
+%\settrims{0mm}{0mm}
+\setstocksize{211mm}{141mm}% Size of paper fed to the printer
+\settrimmedsize{205mm}{135mm}{*}% Size of paper after trimming the edges
+\settrims{3mm}{3mm}% Amount trimmed from the top and fore-edge
+\settypeblocksize{164mm}{107mm}{*} % Size of main text (will be adjusted below)
+%\setbinding{5mm}% Space reserved on spine side for binding: not used, margins set explicitely
+%\setlrmargins{*}{*}{1.1}% Ratio between spine and edge margins: unused, margins set explicitely
+% Spine and fore-edge margins: spine margin should look a bit smaller (as there
+% are two next to each other) but we must account for the binding. These might
+% cancel out.
+\setlrmarginsandblock{17mm}{17mm}{*}
+\setulmargins{*}{*}{1.2}% Ratio between up and down margins
+\setheadfoot{\baselineskip}{2\baselineskip}% Header height and skip from text bottom to footer bottom
+\setheaderspaces{*}{*}{*}% Equal spacing above and below header
+\settypeoutlayoutunit{mm}% Print dimensions in millimeters in compilation output
+\checkandfixthelayout% Apply the layout
 
 %
 % Font setup: URW Garamond No. 8
