@@ -78,8 +78,11 @@
 %
 % Section break with three spaced stars
 %
-\newcommand{\sbreak}{\par\vskip 0pt plus .5\baselineskip%
-    {\begin{center} \Star\qquad\Star\qquad\Star \end{center}}\vskip 0pt plus .5\baselineskip \par\noindent}
+\newcommand{\sbreak}{%
+    \vspace*{3mm}%
+    {\begin{center} \Star\qquad\Star\qquad\Star \end{center}}%
+
+    \vspace*{2mm}}%
 
 %
 % Custom chapter style
