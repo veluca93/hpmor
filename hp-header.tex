@@ -113,8 +113,8 @@
 		\vskip 1cm \begin{center}\chaptitlefont \MakeUppercase{##1}\end{center}\par \vskip 1cm}
 	
 	\renewcommand*{\chaptermark}[1]{% "CHAPTER ONE" and "A DAY OF..."
-		\markboth{\MakeUppercase{##1}}{%
-		  \MakeUppercase{\chaptername}~\thechapter}}
+		\markboth{\MakeUppercase{\chaptername}~\thechapter}%
+			{\MakeUppercase{##1}}}
 
 	\renewcommand*{\tocmark}{\markboth{}{\MakeUppercase{Contents}}}
 	
@@ -172,10 +172,10 @@
 \renewcommand{\DefaultLraise}{0}
 
 %
-% Page numbering, footer, header (confusing)
+% Page numbering, footer, header
 %
 \newcommand{\pageInFooter}{{\footnotesize\makebox[2em][c]{\thepage}}}
-% Page number centered between two small stars in footer
+% Page number centered in footer
 % Same on all pages in body text
 \makeevenfoot{plain}{}{\pageInFooter}{}
 \makeoddfoot{plain}{}{\pageInFooter}{}
@@ -184,15 +184,8 @@
 %
 % Left side header: chapter number
 % Right side header: chapter name
-% Decorative stars in corners
-\makeevenhead{headings}{}{
-	\hp\hyperref[contents]{\scriptsize\rightmark}}{}
-\makeatletter
-\makeoddhead{headings}{}{\parbox{99mm}{\centering\hp\scriptsize\leftmark}}{}
-\copypagestyle{cleared}{empty}
-\makepsmarks{headings}{%
-\createmark{chapter}{right}{shownumber}{\@chapapp\ }{. \ }}
-\makeatother
+\makeevenhead{headings}{}{\hp\hyperref[contents]{\scriptsize\leftmark}}{}
+\makeoddhead{headings}{}{\hp\scriptsize\rightmark}{}
 
 % Style definitions and hacks
 %
