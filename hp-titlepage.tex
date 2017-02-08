@@ -1,96 +1,77 @@
+% Half-title page
 \cleartorecto
+\thispagestyle{empty}
+\vspace*{0pt}
+\begin{center}
+\normalsize
+\lumos{\hpBookChar}\par
+\lumos{and the }\lumos{\hpBookTitle}
+\end{center}
+\clearpage
 
+% Series page
+\thispagestyle{empty}
 \begin{vplace}
 \begin{center}
-\thispagestyle{empty}
-
-\Huge\lumos{Harry Potter}\vspace*{0.5cm}
-
-\large\lumos{and the}
-
-\Large\lumos{Methods of Rationality} \vspace*{0.5cm}
-
-\includegraphics[scale=0.5]{bubble0.png} 
-
-\vspace*{0.5cm}
-\LARGE\lumos{Eliezer {\kern 1ex}Yudkowsky}
+\small Harry Potter and the Methods of Rationality
+\par
+\vspace*{1cm}
 \normalsize
-
-\vspace{2.0cm}
-Find the original text at:\\
-\url{http://hpmor.com} \\
-{\scriptsize \url{http://www.fanfiction.net/s/5782108}} \\
-
+\newcounter{seriesCounter}
+\def\hpSeriesBook#1#2{  
+	\stepcounter{seriesCounter}
+	{\hp\Roman{seriesCounter}}\par
+	#1\par and the #2\bigskip\par
+}
+\hpSeriesBook{Harry James Potter-Evans-Verres}{Methods of Rationality}
+\hpSeriesBook{Harry James Potter-Evans-Verres}{Professor's Games}
+\hpSeriesBook{Harry James Potter-Evans-Verres}{Shadows of Death}
+\hpSeriesBook{Hermione Jean Granger}{Phoenix's Call}
+\hpSeriesBook{Harry James Potter-Evans-Verres}{Last Enemy}
+\hpSeriesBook{Harry James Potter-Evans-Verres}{Philosopher's Stone}
 \end{center}
 \end{vplace}
 
-% Credit to Rowling on verso page
-\cleartoverso
+% Title page
+\cleartorecto
+\thispagestyle{empty}
+\vspace*{-4mm}
+\begin{center}
+\LARGE\lumos{\hpBookChar}\par
+\vspace{\stretch{.2}}
+\normalsize\lumos{and the}\par
+\huge\lumos{\hpBookTitle}\par
+\vspace{\stretch{1}}
+\large Book \Numberstringnum{\hpBookNo} of \\
+Harry Potter and the Methods of Rationality\par
+\vspace{\stretch{1.5}}
+\LARGE\lumos{Eliezer {\kern 1ex}Yudkowsky}\par
+\vspace{\stretch{2}}
+\normalsize
+Find the original text at:\\
+\url{http://hpmor.com}
+\end{center}
 
+% "Copyright" page (credit to Rowling)
+\cleartoverso
+\thispagestyle{empty}
 \begin{center}
 \vspace*{2.0cm}
-
-\thispagestyle{empty}
 Based on the characters of
-
+\vspace*{0.5cm}\par
+\Large J. K. ROWLING\normalsize\par
 \vspace*{0.5cm}
-
-\Large J. K. ROWLING \normalsize 
-
+and her books:\par
 \vspace*{0.5cm}
-
-and her books:
-
-\vspace*{0.5cm}
-
-{
-	\newcounter{books_list_counter}
-	\def \hpBook #1{  
-		\addtocounter{books_list_counter}{1} 
-		\textit{Harry Potter and the #1} \par
-		Year \numtoName{\value{books_list_counter}} at Hogwarts
-		\smallskip\par
-	}
-	
-	\hpBook{Sorcerer’s Stone}
-	\hpBook{Chamber of Secrets}
-	\hpBook{Prisoner of Azkaban}
-	\hpBook{Goblet of Fire}
-	\hpBook{Order of the Phoenix}
-	\hpBook{Half-Blood Prince}
-	\hpBook{Deathly Hallows}
+\def \hpOrigSeriesBook #1{  
+	\textit{Harry Potter and the #1}\smallskip\par
 }
+\hpOrigSeriesBook{Sorcerer’s Stone}
+\hpOrigSeriesBook{Chamber of Secrets}
+\hpOrigSeriesBook{Prisoner of Azkaban}
+\hpOrigSeriesBook{Goblet of Fire}
+\hpOrigSeriesBook{Order of the Phoenix}
+\hpOrigSeriesBook{Half-Blood Prince}
+\hpOrigSeriesBook{Deathly Hallows}
 \end{center}
-
-
-% Begin subbook title
-
-\cleartorecto
-
-\begin{vplace}
-\begin{center}
-\thispagestyle{empty}
-
-\HUGE{\hp book \hpBookNo} \vspace*{1.0cm}
-
-\normalsize\lumos{\hpBookChar} \vspace*{0.2cm}
-
-\footnotesize\lumos{and the}
-
-\large\lumos{\hpBookTitle} \vspace*{0.5 cm}
-
-\includegraphics[scale=0.4]{bubble0.png} 
-
-\vspace*{0.5cm}
-\LARGE\lumos{Eliezer {\kern 1ex}Yudkowsky}
-
-\vspace*{1.5cm}
-\Large \hpBookChapters
-
-\vspace*{0.5cm}
-\scriptsize \hpBookOther \normalsize
-
-\end{center}
-\end{vplace}
-
-% End subbook title
+\clearpage
