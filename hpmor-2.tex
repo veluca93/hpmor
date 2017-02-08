@@ -1,24 +1,16 @@
 \input{hp-header}
 
 \begin{document}
-{
-\pagestyle{empty}
-
+\frontmatter
 \newcommand{\hpBookNo}{2}
-\newcommand{\hpBookChar}{Harry James Potter-{\kern 2pt}Evans-{\kern 4pt}Verres}
+\newcommand{\hpBookChar}{Harry James Potter-Evans-Verres}
 \newcommand{\hpBookTitle}{Professor's Games}
 \newcommand{\hpBookChapters}{Chapters 22--37}
 \newcommand{\hpBookOther}{}
 \input{hp-titlepage}
-
-\pagenumbering{gobble}
 \input{hp-contents}
-\cleartorecto
-}
-\pagenumbering{arabic}
-\setcounter{page}{1}
+\mainmatter
 \setcounter{chapter}{21}
-
 \include{chapters/hpmor-chapter-022}
 \include{chapters/hpmor-chapter-023}
 \include{chapters/hpmor-chapter-024}

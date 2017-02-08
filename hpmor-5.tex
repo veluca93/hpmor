@@ -1,22 +1,19 @@
 \input{hp-header}
-\linespread{1.25}
+\linespread{1.25}% Increase line spacing for a wider spine to accomodate the cover design
 
 \begin{document}
-{
-\pagestyle{empty}
-
+\frontmatter
 \newcommand{\hpBookNo}{5}
-\newcommand{\hpBookChar}{Harry James Potter-{\kern 2pt}Evans-{\kern 4pt}Verres}
+\newcommand{\hpBookChar}{Harry James Potter-Evans-Verres}
 \newcommand{\hpBookTitle}{Last Enemy}
 \newcommand{\hpBookChapters}{Chapters 86--99}
 \newcommand{\hpBookOther}{}
 \input{hp-titlepage}
-
-\pagenumbering{gobble}
 \input{hp-contents}
-\cleartorecto
+\mainmatter
 
 % Headlines
+\cleartorecto
 \begin{Spacing}{0.95}
 (International news headlines of April 7th, 1992:)
 \vspace{1cm}
@@ -57,15 +54,9 @@ As Veela Powers Awaken}
 As Potter Threatens Ministry\\
 With Attack on Azkaban}
 \end{Spacing}
-
 % End headlines
-\cleartorecto
 
-}
-\pagenumbering{arabic}
-\setcounter{page}{1}
 \setcounter{chapter}{85}
-
 \include{chapters/hpmor-chapter-086}
 \include{chapters/hpmor-chapter-087}
 \include{chapters/hpmor-chapter-088}
