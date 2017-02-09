@@ -82,6 +82,16 @@
 % Draws three “magic stars”, used as a decoration everywhere
 \newcommand*{\Stars}{{\large\Star\kern-.6ex\lower1.3ex\hbox{\large\Star}%
     \kern-.1ex\raise.2ex\hbox{\tiny\Star}\spacefactor1000}}
+%
+% Parseltongue
+\newfontface\ptsansi[
+, ExternalLocation=fonts/alegreya-sans/
+, Ligatures={Common,TeX}
+, UprightFont=*-Light
+, ItalicFont=*-LightItalic
+, BoldFont=*-Regular
+, BoldItalicFont=*-Italic
+]{AlegreyaSans}
 
 %
 % Section break with three spaced stars
@@ -244,7 +254,7 @@
 \newcommand*{\el}{\kern \ellipsisgap\dots} % Ellipsis definition
 %
 % Logical formatting macros
-\newcommand*{\parsel}[1]{\textit{#1}} % Parseltongue
+\newcommand*\parsel[1]{{\ptsansi\textit{#1}}} % Parseltongue
 \newcommand*{\prophecy}[1]{\textsc{#1}} % Prophecies
 \newcommand*{\headline}[1]{\begin{center}\textsc{#1}\end{center}} % Newspaper headlines
 \newcommand*{\inlineheadline}[1]{\textsc{#1}} % Newspaper headlines inline with text
