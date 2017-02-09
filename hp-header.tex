@@ -123,8 +123,54 @@
 }
 \chapterstyle{evans}% Actually implements the above chapter style code
 
+% Macro to convert a number to uppercase Roman
+\makeatletter
+\newcommand*{\RomNum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
 % Command to choose where to break the line in long chapter titles
-\newcommand*{\wrapchapter}[2]{\chapter[#1 #2]{#1\protect\linebreak #2}}
+\newcommand*{\wrapchapter}[2]{
+	\chapter[#1 #2]           % TOC and page header
+	{#1\protect\linebreak #2}}% Title
+
+% Macro to format an abbreviation such as "TSPE" for "the Stanford Prison Experiment"
+\newcommand{\abbrev}[1]{{\scshape \MakeLowercase{#1}}}
+
+% Formatting of the part numbers.
+% Numbers are formatted as roman numerals (0 is left unchanged).
+% Non-numbers are also left unchanged, and without a "Part~" prefix. This is used for chapter 77.
+% This implementation is expandable and so causes no issue with hyperref.
+\newcommand{\formatPart}[1]{\ifnum0<0#1\relax Part~\RomNum{#1}\else \ifnum0=#1\relax Part~0\else #1\fi\fi}
+\newcommand{\formatPartShort}[1]{\ifnum0<0#1\relax \RomNum{#1}\else #1\fi}% Same case for 0 and non-numeric
+
+% \partchapter{The Stanford Prison Experiment}{1}
+% TOC: The Stanford Prison Experiment, Part I
+% Page header: The Stanford Prison Experiment I
+% Title: The Stanford Prison Experiment, Part I
+\newcommand{\partchapter}[2]{%
+	\chapter[#1, \formatPart{#2}]%
+		[#1 \formatPartShort{#2}]%
+		{#1, \formatPart{#2}}}
+
+% \namedpartchapter{Taboo Tradeoffs}{2}{The Horns Effect}
+% TOC: Taboo Tradeoffs, Part II: The Horns Effect
+% Page header: Taboo Tradeoffs II: The Horns Effect
+% Title: Taboo Tradeoffs, Part II: \\? The Horns Effect
+% The optional argument affects whether the line is broken after "Part ...:"
+\newcommand{\namedpartchapter}[5][1]{%
+	\chapter[#2, \formatPart{#3}: #4]%
+		[\mbox{#2 \formatPartShort{#3}:} \mbox{#4}]%
+		{#2, \formatPart{#3}:\protect\linebreak[#1] #4}}
+
+% \abbrevnamedpartchapter{The Stanford Prison Experiment}{TSPE}{6}{Constrained Optimization}
+% TOC: \abbrev{TSPE}, Part VI: Constrained Optimization
+% Page header: TSPE VI: Constrained Optimization
+% Title: The Stanford Prison Experiment, Part VI: \\? Constrained Optimization
+% The optional argument affects whether the line is broken after "Part ...:"
+\newcommand{\abbrevnamedpartchapter}[6][1]{%
+	\chapter[\texorpdfstring{\abbrev{#3}, \formatPart{#4}: #5}{#3, \formatPart{#4}: #5}]%
+		[\mbox{#3 \formatPartShort{#4}:} \mbox{#5}]%
+		{#2, \formatPart{#4}:\protect\linebreak[#1] #5}}
 
 %
 % Subsection
