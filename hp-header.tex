@@ -11,6 +11,9 @@
 \usepackage{xstring}        % Needed for \IfInteger...
 \usepackage{censor}         % Used in "Time Pressure" to redact a name
 
+%\usepackage{chickenize}
+%\colorstretch
+
 \usepackage[bookmarks=true,unicode=true,pdfborder={0 0 0},
 	pdftitle={Harry Potter and the Methods of Rationality},
 	pdfauthor={LessWrong}, breaklinks={true},
@@ -19,6 +22,7 @@
 
 \usepackage{ellipsis}        % Must be loaded after fontspec and hyperref
 \renewcommand{\ellipsisgap}{.16667em}
+\newcommand{\ellipsisgapitalic}{.125em} % Gap must be reduced for italic (to be used manually)
 
 \usepackage[style=english]{csquotes}
 \MakeOuterQuote{"}	    % Automatic open and closing quotes
@@ -248,7 +252,7 @@
 % preceded by the same amount of space as used between the dots (see the
 % ellipsis package configuration above). Note that the ellpsis package is
 % necessary for \dots to generate three spaced dots when compiling with
-% lualatex or xelatex (otherwidse one gets a single glyph of 3 packed dots). We
+% lualatex or xelatex (otherwise one gets a single glyph of 3 packed dots). We
 % use \dots instead of \ldots because of a buggy interaction with the amsmath
 % package.
 \newcommand*{\el}{\kern \ellipsisgap\dots} % Ellipsis definition
