@@ -75,6 +75,9 @@
 %
 % Chapters, headings, etc.: Lumos (extra spacing looks much better)
 \newfontface\hp[ExternalLocation=fonts/lumos/, LetterSpace=6.0, WordSpace=1.85]{Lumos}
+% Slightly scaled up font, so that we can get a size between the 11pt \footnotesize and \scriptsize
+\newfontface\hpScaledUp[ExternalLocation=fonts/lumos/, LetterSpace=6.0, WordSpace=1.85, Scale=1.05]{Lumos}
+% Uppercase Lumos, used in the title pages
 \newcommand{\lumos}[1]{{\hp\MakeUppercase{#1}}}
 % Chapter numbers: Lumos (extreme spacing for effect)
 \newfontface\hpchap[ExternalLocation=fonts/lumos/, LetterSpace=40.0, WordSpace=5.0]{Lumos}
@@ -245,8 +248,8 @@
 %
 % Left side header: chapter number
 % Right side header: chapter name
-\makeevenhead{headings}{}{\hp\hyperref[contents]{\scriptsize\leftmark}}{}
-\makeoddhead{headings}{}{\hp\scriptsize\rightmark}{}
+\makeevenhead{headings}{}{\hpScaledUp\hyperref[contents]{\scriptsize\leftmark}}{}
+\makeoddhead{headings}{}{\hpScaledUp\scriptsize\rightmark}{}
 
 % Style definitions and hacks
 %
