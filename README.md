@@ -1,9 +1,9 @@
-This is a XeLaTeX version of Eliezer Yudkowsky's epic fanfiction:
+This is a LuaLaTeX version of Eliezer Yudkowsky's epic fanfiction:
 
 *_Harry Potter and the Methods of Rationality_*
 
-The source for this version was originally duplicated from <http://github.com/rjl20/hpmor/master>.
-Since then, it has been greatly reworked, with various improvements and stylistic changes.
+The code was forked from <http://github.com/xenohedron/hpmor-xetex>.  It should
+still compile with XeLaTex but there might be formatting issues.
 
 Features:
 * Includes an edited version of _Daystar's Remix of Rationality_
