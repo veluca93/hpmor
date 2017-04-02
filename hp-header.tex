@@ -273,11 +273,15 @@
 \def\PM/{{\,\scshape pm}} % PM in small caps
 %
 % Makes a written note in italics (first used, Hogwarts acceptance letter)
-\newenvironment{writtenNote}{%\parindent=1cm%
-	\vskip 1\baselineskip plus 1\baselineskip minus .5\baselineskip%
-	\begin{adjustwidth}{\parindent}{\parindent}\begin{em}%
-	\par\noindent}
-	{\end{em}\end{adjustwidth}\vskip 1\baselineskip plus 1\baselineskip minus .5\baselineskip}
+\newenvironment{writtenNote}{%
+    \bigskip
+    \begin{adjustwidth}{\parindent}{\parindent}%
+        \begin{em}\par\noindent
+}{%
+        \end{em}%
+    \end{adjustwidth}%
+    \bigskip
+}
 % Makes a letter address and closing, for use with above writtenNote environment
 \newcommand{\letterAddress}[1]{\pagebreak[1]\noindent{}#1\nopagebreak[4]\par}
 \newcommand{\letterClosing}[2][\vskip 1\baselineskip]{\nopagebreak[4]#1\par\nopagebreak[5]\noindent#2}
