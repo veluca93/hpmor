@@ -1,0 +1,5 @@
+This font file was downloaded from
+https://github.com/rjl20/hpmor/tree/master/xfonts/lumos. It appears to differ
+slightly from the version found online and which the readme.txt refers to: the
+version here adds some quote characters, and includes some imperceptible
+changes in the ampersand character.

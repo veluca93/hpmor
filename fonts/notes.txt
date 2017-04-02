@@ -1,0 +1,9 @@
+Miscelanea.ttf:
+I have no idea where the Miscelanea font comes from. It has only two
+characters: a star symbol mapped to '*' and a three-stars symbol mapped to '#'.
+
+Twilight.ttf:
+The Twilight font appears to be from a former user of DevianArt named
+sheslikeadream. I was unable to find more information. Note that this is not
+the same font as "Twilight New Moon".
+
