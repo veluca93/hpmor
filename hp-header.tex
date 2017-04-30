@@ -22,7 +22,7 @@
 
 \usepackage{ellipsis}        % Must be loaded after fontspec and hyperref
 \renewcommand{\ellipsisgap}{.16667em}
-\newcommand{\ellipsisgapitalic}{.125em} % Gap must be reduced for italic (to be used manually)
+\newcommand{\ellipsisgapitalic}{.115em} % Gap must be reduced for italic (to be used manually)
 
 \usepackage[style=english]{csquotes}
 \MakeOuterQuote{"}	    % Automatic open and closing quotes
@@ -256,7 +256,7 @@
 % lualatex or xelatex (otherwise one gets a single glyph of 3 packed dots). We
 % use \dots instead of \ldots because of a buggy interaction with the amsmath
 % package.
-\newcommand*{\el}{\kern \ellipsisgap\dots} % Ellipsis definition
+\newcommand*{\el}{\leavevmode\kern \ellipsisgap\dots} % Ellipsis definition
 %
 % Logical formatting macros
 \newcommand*\parsel[1]{{\ptsansi\textit{#1}}} % Parseltongue
