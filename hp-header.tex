@@ -206,10 +206,15 @@
 \aftersubsecskip=.5\baselineskip plus .5\baselineskip % skip after the heading
 \setsubsechook{\nopagebreak\vskip 0pt plus 3\baselineskip}
 
-\frenchspacing    % Single space after a period
-%
-\setlength{\emergencystretch}{.07\textwidth}
+% Single space after a period (also avoids having to take care of spacing after
+% abbreviations)
+\frenchspacing
+
 % If a paragraph cannot be typeset without compromises, try wider line spacing
+\setlength{\emergencystretch}{.07\textwidth}
+
+%
+% Penalties
 %
 \clubpenalty=80 % Mildly discourages first line of paragraph on previous page
 \widowpenalty=4000 % Avoids last line of paragraph on next page
@@ -246,7 +251,6 @@
 % Right side header: chapter name
 \makeevenhead{headings}{}{\hpScaledUp\hyperref[contents]{\scriptsize\leftmark}}{}
 \makeoddhead{headings}{}{\hpScaledUp\scriptsize\rightmark}{}
-
 % Style definitions and hacks
 %
 % In the text, the ellipsis is encoded with \el, which we define here to \dots
@@ -267,7 +271,6 @@
 % Macros for time of day. Using '/' suffix to avoid eating a following space.
 \def\AM/{{\,\scshape am}} % AM in small caps
 \def\PM/{{\,\scshape pm}} % PM in small caps
-%
 
 %
 % Code for showing grid lines in red, for grid typesetting checks
