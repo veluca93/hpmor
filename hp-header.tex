@@ -33,6 +33,7 @@
 
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}% We have only one footnote in the introduction
 
+\setlength{\parskip}{0pt}% Default is 0 with rubber
 \setSingleSpace{1.11}
 \SingleSpace
 
@@ -109,9 +110,12 @@
 % Section break with three spaced stars
 %
 \newcommand{\sbreak}{%
-    \par\vskip 2pt plus .5\baselineskip
-    {\begin{center} \Star\qquad\Star\qquad\Star \end{center}}%
-    \vskip -3pt plus .5\baselineskip \par\noindent}
+    \par
+    \SomeVSpace
+    \hfill\raisebox{-.5ex}{\Star\qquad\Star\qquad\Star}\hfill\null% So the \hfill is not removed
+    \SomeVSpace
+    \par\noindent
+}
 
 %
 % Custom chapter style
@@ -201,8 +205,6 @@
 \aftersubsecskip=.5\baselineskip plus .5\baselineskip % skip after the heading
 \setsubsechook{\nopagebreak\vskip 0pt plus 3\baselineskip}
 
-\raggedbottom     % Better to have consistent line spacing than vertically justified text
-%\sloppybottom     % Allows widow lines to be added to the bottom of the page.
 \frenchspacing    % Single space after a period
 %
 \setlength{\emergencystretch}{.07\textwidth}
@@ -215,12 +217,6 @@
 \exhyphenpenalty=90 % Penalty for breaking after a dash or explicit hyphen
 \doublehyphendemerits=90000 % Avoids hyphenation on consecutive lines
 \hbadness=4000 % When compiling, only reports underfull lines if badness>4000
-
-%
-% Adjust space around lists (not entirely sure why)
-%
-\setlength{\topsep}{.5\baselineskip plus 1\baselineskip minus .5\baselineskip}
-\setlength{\partopsep}{.5\baselineskip plus 1\baselineskip minus .5\baselineskip}
 
 %
 % Lettrine font pick and configuration
@@ -271,15 +267,60 @@
 \def\AM/{{\,\scshape am}} % AM in small caps
 \def\PM/{{\,\scshape pm}} % PM in small caps
 %
+
+%
+% Code for showing grid lines in red, for grid typesetting checks
+%
+% \usepackage{atbegshi,picture,xcolor}
+% \AtBeginShipout{%
+%   \AtBeginShipoutUpperLeft{%
+%     \color{red}%
+%     \put(\dimexpr 1in+\oddsidemargin,
+%          -\dimexpr 1in+\topmargin+\headheight+\headsep+\topskip)%
+%       {%
+%        \vtop to\dimexpr\vsize+\baselineskip{
+%          \hrule
+%          \leaders\vbox to\baselineskip{\hrule width\hsize\vfill}\vfill
+%        }%
+%       }%
+%   }%
+% }
+
+% Define vertical spaces between .5 and 1.5 lines to keep text on a grid as much as possible.
+% (these spaces are typically used before and after a list, note etc. Using
+% twice .5 lines or twice 1.5 lines means we get back to grid typesetting after
+% the second space.)
+\newlength{\gridvskip}
+\setlength{\gridvskip}{1\baselineskip plus .5\baselineskip minus .5\baselineskip}
+\newlength{\gridsmallvskip}
+\setlength{\gridsmallvskip}{.5\baselineskip plus .5\baselineskip}
+\newcommand*{\SomeVSpace}{{\vskip \gridvskip}}
+\newcommand*{\SmallVSpace}{{\vskip \gridsmallvskip}}
+
+%
+% Space around lists
+%
+% Remove extra space around lists and between items. It looks better and helps
+% typesetting on the grid. This command must come first, or it would overwrite
+% some of the other changes below.
+\tightlists*
+% Set space before and after lists and center environments
+\setlength{\topsep}{\gridvskip}
+% Set additional space added to lists that start a new paragraph. Also used by
+% adjustwidth
+\setlength{\partopsep}{0pt}
+% Space between verse stanzas
+\setlength{\stanzaskip}{\gridvskip}
+
 % Makes a written note in italics (first used, Hogwarts acceptance letter)
 \newenvironment{writtenNote}{%
-    \bigskip
+    \SomeVSpace
     \begin{adjustwidth}{\parindent}{\parindent}%
         \begin{em}\par\noindent
 }{%
         \end{em}%
     \end{adjustwidth}%
-    \bigskip
+    \SomeVSpace
 }
 % Makes a letter address and closing, for use with above writtenNote environment
 \newcommand{\letterAddress}[1]{\pagebreak[1]\noindent{}#1\nopagebreak[4]\par}
