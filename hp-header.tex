@@ -33,6 +33,9 @@
 
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}% We have only one footnote in the introduction
 
+\setSingleSpace{1.11}
+\SingleSpace
+
 % \overfullrule=5pt % Mark overfull hbox with black rectangle
 
 % Make framed boxes (for debugging) take no additional space
@@ -198,10 +201,6 @@
 \aftersubsecskip=.5\baselineskip plus .5\baselineskip % skip after the heading
 \setsubsechook{\nopagebreak\vskip 0pt plus 3\baselineskip}
 
-%
-% Configure line spacing and paragraph spacing, and modifying penalties
-%
-\linespread{1.11} % Wider line spacing looks much better
 \raggedbottom     % Better to have consistent line spacing than vertically justified text
 %\sloppybottom     % Allows widow lines to be added to the bottom of the page.
 \frenchspacing    % Single space after a period
