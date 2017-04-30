@@ -8,10 +8,17 @@
 \input{hp-titlepage}
 \input{hp-contents}
 \cleartorecto
+\pagestyle{plain}
 \include{hp-note}
 \include{hp-intro}
 \addtocontents{toc}{\vspace{7pt}}% Add some space between front- and main-matter in TOC
+
 \clearpage
+
+% Revert to normal page style
+\pagestyle{headings}
+\chapterstyle{evans}% For some reason we need to call this again to have headings on odd pages
+
 \thispagestyle{empty}
 \begin{vplace}[.27]
     \itshape\small
