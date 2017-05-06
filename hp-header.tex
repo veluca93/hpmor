@@ -200,14 +200,6 @@
 		[\mbox{#3 \formatPartShort{#4}:} \mbox{#5}]%
 		{#2, \formatPart{#4}:\protect\linebreak[#1] #5}}
 
-%
-% Subsection
-%
-\setsubsecheadstyle{\scshape} % Subsection titles in small caps
-\beforesubsecskip=1.5\baselineskip % skip before the heading
-\aftersubsecskip=.5\baselineskip plus .5\baselineskip % skip after the heading
-\setsubsechook{\nopagebreak\vskip 0pt plus 3\baselineskip}
-
 % Single space after a period (also avoids having to take care of spacing after
 % abbreviations)
 \frenchspacing
@@ -303,7 +295,11 @@
 \newcommand*{\SomeVSpace}{{\vskip \gridvskip}}
 \newcommand*{\SmallVSpace}{{\vskip \gridsmallvskip}}
 
-%
+% Subsections style and spacing (Aftermath:, Act:, etc.)
+\setsubsecheadstyle{\scshape} % Subsection titles in small caps
+\setbeforesubsecskip{0\baselineskip minus .5\baselineskip}% Note: a negative value here means no indent
+\setaftersubsecskip{1\baselineskip minus .5\baselineskip}
+
 % Space around lists
 %
 % Remove extra space around lists and between items. It looks better and helps
@@ -315,8 +311,6 @@
 % Set additional space added to lists that start a new paragraph. Also used by
 % adjustwidth
 \setlength{\partopsep}{0pt}
-% Space between verse stanzas
-\setlength{\stanzaskip}{\gridvskip}
 
 % Makes a written note in italics (first used, Hogwarts acceptance letter)
 \newenvironment{writtenNote}{%
