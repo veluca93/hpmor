@@ -16,6 +16,10 @@
 %\usepackage{chickenize}
 %\colorstretch
 
+% Show the last row of paragraphs in red when \looseness=-1 would work
+\usepackage{luatexbase}
+\directlua{dofile("widow-assist.lua")}
+
 \usepackage[bookmarks=true,unicode=true,pdfborder={0 0 0},
 	pdftitle={HPMOR},
 	pdfauthor={LessWrong}, breaklinks={true},
