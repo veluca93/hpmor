@@ -35,8 +35,9 @@
 
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}% We have only one footnote in the introduction
 
+\providecommand{\LineSpread}{1.11}% Won't override a different value set in hpmor-X.tex
 \setlength{\parskip}{0pt}% Default is 0 with rubber
-\setSingleSpace{1.11}
+\setSingleSpace{\LineSpread}
 \SingleSpace
 
 % \overfullrule=5pt % Mark overfull hbox with black rectangle
