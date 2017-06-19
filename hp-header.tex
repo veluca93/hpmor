@@ -289,16 +289,16 @@
 % twice .5 lines or twice 1.5 lines means we get back to grid typesetting after
 % the second space.)
 \newlength{\gridvskip}
-\setlength{\gridvskip}{1\baselineskip plus .5\baselineskip minus .5\baselineskip}
+\setlength{\gridvskip}{1\baselineskip}
 \newlength{\gridsmallvskip}
-\setlength{\gridsmallvskip}{.5\baselineskip plus .5\baselineskip}
+\setlength{\gridsmallvskip}{.5\baselineskip}
 \newcommand*{\SomeVSpace}{{\vskip \gridvskip}}
 \newcommand*{\SmallVSpace}{{\vskip \gridsmallvskip}}
 
 % Subsections style and spacing (Aftermath:, Act:, etc.)
 \setsubsecheadstyle{\scshape} % Subsection titles in small caps
-\setbeforesubsecskip{0\baselineskip minus .5\baselineskip}% Note: a negative value here means no indent
-\setaftersubsecskip{1\baselineskip minus .5\baselineskip}
+\setbeforesubsecskip{0\baselineskip}% Note: a negative value here means no indent
+\setaftersubsecskip{1\baselineskip}
 
 % Space around lists
 %
@@ -329,7 +329,7 @@
 \newcommand{\hackChDXIV}[2]{%
 %~ \vskip 0\baselineskip plus 1\baselineskip
 \noindent\hfill\scalebox{#2}{#1}\hfill\mbox{}%
-\vskip 1\baselineskip plus 1\baselineskip
+\vskip 1\baselineskip
 }
 %
 \newlength{\Auxa}
