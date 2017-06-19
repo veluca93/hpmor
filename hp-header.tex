@@ -211,8 +211,9 @@
 % abbreviations)
 \frenchspacing
 
-% If a paragraph cannot be typeset without compromises, try wider line spacing
-\setlength{\emergencystretch}{.07\textwidth}
+% If a paragraph cannot be typeset without overfull boxes, try adding some
+% stretchable glue in each line
+\setlength{\emergencystretch}{.04\textwidth}
 
 %
 % Penalties
