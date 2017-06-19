@@ -136,8 +136,8 @@
 	\renewcommand*{\chaptitlefont}{\hp\large}
 	
 	\setlength{\beforechapskip}{0pt}
-	\setlength{\midchapskip}{0pt}
-	\setlength{\afterchapskip}{1\baselineskip}
+	\setlength{\midchapskip}{1.1cm plus .5\baselineskip minus .5\baselineskip}
+	\setlength{\afterchapskip}{1.1cm plus .5\baselineskip minus .5\baselineskip}% Some stretchable glue is necessary to avoid vbox fill messages
 	
 	\renewcommand*{\printchapternum}{% " C H A P T E R   O N E "
 		\begin{center} \chapnumfont \hyperref[contents]{CHAPTER \NUMBERstringnum{\thechapter}}\end{center}}
@@ -145,7 +145,7 @@
 	\renewcommand*{\printchaptername}{}% Not needed, "CHAPTER" added above
 	
 	\renewcommand*{\printchaptertitle}[1]{% "A DAY OF VERY LOW PROBABILITY"
-		\vskip 1cm \begin{center}\chaptitlefont \MakeUppercase{##1}\end{center}\par \vskip 1cm}
+		\begin{center}\chaptitlefont \MakeUppercase{##1}\end{center}}
 	
 	\renewcommand*{\chaptermark}[1]{% "CHAPTER ONE" and "A DAY OF..."
 		\markboth{\MakeUppercase{\chaptername}~\thechapter}%
