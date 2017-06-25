@@ -312,6 +312,11 @@
 % adjustwidth
 \setlength{\partopsep}{0pt}
 
+% The tabular environment results in some vertical space missing after the tabular,
+% allow TeX to fill it with some stretchable glue
+\let\Oldendtabular\endtabular
+\def\endtabular{\Oldendtabular\vskip0pt plus .1\baselineskip\relax}
+
 % Makes a written note in italics (first used, Hogwarts acceptance letter)
 \newenvironment{writtenNote}{%
     \SomeVSpace
