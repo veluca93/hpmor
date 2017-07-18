@@ -1,0 +1,26 @@
+%\usepackage{chickenize}
+%\colorstretch
+
+% Show the last row of paragraphs in red when \looseness=-1 would work
+\newcommand{\ShowLoosenessHelp}{
+\usepackage{luatexbase}
+\directlua{dofile("widow-assist.lua")}
+}
+
+% Show grid lines in red, for grid typesetting checks
+\newcommand{\ShowGrid}{
+\usepackage{atbegshi,picture,xcolor}
+\AtBeginShipout{%
+  \AtBeginShipoutUpperLeft{%
+    \color{red}%
+    \put(\dimexpr 1in+\oddsidemargin,
+         -\dimexpr 1in+\topmargin+\headheight+\headsep+\topskip)%
+      {%
+       \vtop to\dimexpr\vsize+\baselineskip{
+         \hrule
+         \leaders\vbox to\baselineskip{\hrule width\hsize\vfill}\vfill
+       }%
+      }%
+  }%
+}
+}

@@ -1,8 +1,9 @@
 \documentclass[11pt,extrafontsizes,twoside,openany,final]{memoir} % 11pt is scaled down to 10.5 in \setmainfont call
 
 % THIS DOCUMENT REQUIRES LuaLaTeX TO COMPILE!
-% XeLaTeX should work but there might be formatting artefacts. In particular,
-% it seems that the letter and word spacing settings are processed differently.
+% XeLaTeX should work (if the \ShowLoosenessHelp hand-tuning macro is not used)
+% but there might be formatting artefacts. In particular, it seems that the
+% letter and word spacing settings are processed differently.
 
 \usepackage{lettrine}		% Used for the fancy caps at the start of each chapter
 \usepackage{amsmath}		% Provides the align environment, used in chapter 13 for the notes
@@ -12,13 +13,6 @@
 
 \usepackage{xstring}        % Needed for \IfInteger...
 \usepackage{censor}         % Used in "Time Pressure" to redact a name
-
-%\usepackage{chickenize}
-%\colorstretch
-
-% Show the last row of paragraphs in red when \looseness=-1 would work
-\usepackage{luatexbase}
-\directlua{dofile("widow-assist.lua")}
 
 \usepackage[bookmarks=true,unicode=true,pdfborder={0 0 0},
 	pdftitle={HPMOR},
@@ -36,6 +30,10 @@
 \usepackage{fmtcount}       % Provides \NUMBERstringnum
 \usepackage{graphicx}       % for \reflectbox in header
 \usepackage[normalem]{ulem} % For \censor in chapter 64
+
+%\input{hand-tuning}
+%\ShowLoosenessHelp
+%\ShowGrid
 
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}% We have only one footnote in the introduction
 
@@ -261,28 +259,6 @@
 % Macros for time of day. Using '/' suffix to avoid eating a following space.
 \def\AM/{{\,\scshape am}} % AM in small caps
 \def\PM/{{\,\scshape pm}} % PM in small caps
-
-%
-% Code for showing grid lines in red, for grid typesetting checks
-%
-\newif\ifgridlines
-\gridlinesfalse% Use \gridlinestrue to enable, \gridlinesfalse to disable
-\ifgridlines
-\usepackage{atbegshi,picture,xcolor}
-\AtBeginShipout{%
-  \AtBeginShipoutUpperLeft{%
-    \color{red}%
-    \put(\dimexpr 1in+\oddsidemargin,
-         -\dimexpr 1in+\topmargin+\headheight+\headsep+\topskip)%
-      {%
-       \vtop to\dimexpr\vsize+\baselineskip{
-         \hrule
-         \leaders\vbox to\baselineskip{\hrule width\hsize\vfill}\vfill
-       }%
-      }%
-  }%
-}
-\fi
 
 % Define vertical spaces between .5 and 1.5 lines to keep text on a grid as much as possible.
 % (these spaces are typically used before and after a list, note etc. Using
