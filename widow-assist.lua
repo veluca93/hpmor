@@ -58,17 +58,23 @@ local pre_linebreak_test_looseness = function (head, groupeCode)
     luatexbase.add_to_callback("hpack_quality", function() end, "hpqfilter")
     luatexbase.add_to_callback("vpack_quality", function() end, "vpqfilter")
 
-    -- Build a copy of the paragraph with increased looseness and no emergency stretch
-    local nP1, iP1 = tex.linebreak(nodecopylist(head), {looseness=tex.looseness+1, emergencystretch=0})
+    -- Build a copy of the paragraph normally
+    local n, i = tex.linebreak(nodecopylist(head))
 
     -- Build a copy of the paragraph with increased looseness and default emergency stretch
     local nP1s, iP1s = tex.linebreak(nodecopylist(head), {looseness=tex.looseness+1})
 
+    local nP1, iP1
+    if iP1s.prevgraf > i.prevgraf then
+        -- It worked with the default emergency stretch, let's try without
+        nP1, iP1 = tex.linebreak(nodecopylist(head), {looseness=tex.looseness+1, emergencystretch=0})
+    else
+        -- Didn't work with emergency stretch, no point to try without
+        nP1, iP1 = n, i
+    end
+
     -- Build a copy of the paragraph with decreased looseness
     local nM1, iM1 = tex.linebreak(nodecopylist(head), {looseness=tex.looseness-1})
-
-    -- Build a copy of the paragraph normally
-    local n, i = tex.linebreak(nodecopylist(head))
     
     -- Reenable underfull and overfull boxes reporting
     luatexbase.remove_from_callback("hpack_quality", "hpqfilter")
