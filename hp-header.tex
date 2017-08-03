@@ -268,8 +268,8 @@
 \setlength{\gridvskip}{1\baselineskip}
 \newlength{\gridsmallvskip}
 \setlength{\gridsmallvskip}{.5\baselineskip}
-\newcommand*{\SomeVSpace}{{\vskip \gridvskip}}
-\newcommand*{\SmallVSpace}{{\vskip \gridsmallvskip}}
+\newcommand*{\SomeVSpace}{\vskip \gridvskip\relax}
+\newcommand*{\SmallVSpace}{\vskip \gridsmallvskip\relax}
 
 % Subsections style and spacing (Aftermath:, Act:, etc.)
 \setsubsecheadstyle{\scshape} % Subsection titles in small caps
