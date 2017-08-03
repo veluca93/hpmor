@@ -306,38 +306,37 @@
 % Makes a letter address and closing, for use with above writtenNote environment
 \newcommand{\letterAddress}[1]{\pagebreak[1]\noindent{}#1\nopagebreak[4]\par}
 \newcommand{\letterClosing}[2][\vskip 1\baselineskip]{\nopagebreak[4]#1\par\nopagebreak[5]\noindent#2}
-%
-\newcommand{\hackChDXIV}[2]{%
-%~ \vskip 0\baselineskip plus 1\baselineskip
+
+% Commands for formatting the titles of the fourth omake, in chapter 64
+\newcommand{\omakeFourTitle}[2]{%
+\vskip 0pt plus 1\baselineskip%
 \noindent\hfill\scalebox{#2}{#1}\hfill\mbox{}%
-\vskip 1\baselineskip
+\vskip 1\baselineskip plus 0pt minus .5\baselineskip
 }
 %
-\newlength{\Auxa}
-\newcommand{\hackChDXIVa}{
+\newcommand{\omakeFourFontTextLotR}{%
 \fontspec[ExternalLocation=fonts/ringbearer/]{RingBearer}
 \settowidth{\versewidth}{\mbox{the}}
 Lord\scalebox{.40}{\parbox[b]{\versewidth}{
 	\centering of\\\nointerlineskip\vskip 4pt the}}Rationalit\raisebox{-.32ex}{Y}
 }
 %
-\newcommand{\hackChDXIVb}{
+\newcommand{\omakeFourFontTextWardrobe}{%
 \fontspec[ExternalLocation=fonts/narnia/]{NarniaBLL}
-456}
+456}% 4, 5 and 6 encode "The Witch", "and" and "the Wardrobe"
 %
-\newcommand{\hackChDXIVd}{
+\newcommand{\omakeFourFontTextThunder}{%
 \fontspec[ExternalLocation=fonts/thundercats/]{Thundercats}
 ThunderSmarts}
 %
-\newcommand{\hackChDXIVh}{
+\newcommand{\omakeFourFontTextTwilight}{%
 \fontspec[ExternalLocation=fonts/]{Twilight}
 Utilitarian Twilight}
 %
-\newcommand*{\omakeLogo}[2][.7]{%
-    \begin{center}
-        \includegraphics[width=#1\linewidth]{omake4-titles/#2}
-    \end{center}
-}
+\newcommand*{\omakeFourLogo}[3][]{%
+\omakeFourTitle{%
+    \includegraphics[width=#2\linewidth,#1]{omake4-titles/#3}%
+}{1}}
 
 % Hyphenation corrections
 %
