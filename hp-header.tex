@@ -307,6 +307,16 @@
 \newcommand{\letterAddress}[1]{\pagebreak[1]\noindent{}#1\nopagebreak[4]\par}
 \newcommand{\letterClosing}[2][\vskip 1\baselineskip]{\nopagebreak[4]#1\par\nopagebreak[5]\noindent#2}
 
+% Format a "thought" paragraph: vertical space around, consistent and controllable indent
+\newenvironment{thought}[1][\parindent]{%
+    \SmallVSpace% vertical space, also terminates previous paragraph
+    \hangindent=#1% apply indent given in optional argument
+    \hangafter=0% apply indent from the first line
+    \parindent=0pt% disable extra indent for first line
+}{%
+    \SmallVSpace% vertical space, also terminates paragraph
+}
+
 % Commands for formatting the titles of the fourth omake, in chapter 64
 \newcommand{\omakeFourTitle}[2]{%
 \vskip 0pt plus 1\baselineskip%
