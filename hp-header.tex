@@ -356,7 +356,16 @@ Wi-zen-gam-ot an-aly-se an-aly-sis re-mem-ber Mc-Gon-a-gall fun-da-men-tal
 Dum-ble-dore thou-sand Huf-fle-puff Huf-fle-puffs Slyther-in Slyther-ins Har-ry
 Flit-wick win-gar-di-um le-viosa Dra-co Tre-lawney Sev-erus Mal-foy}
 
-\typeout{^^JYOU NEED TO SET \string\PdfSourceUrl\space IN hp-header.tex^^J}
-\typeout{^^JYOU NEED TO SET \string\CoverAuthor\space IN hp-header.tex^^J}
-\newcommand{\CoverAuthor}{UNSET}
-\newcommand{\PdfSourceUrl}{UNSET}
+\newcommand{\UnsetValue}{UNSET}
+\newcommand{\CoverAuthor}{\UnsetValue}% Set cover author here, to appear in colophon
+\newcommand{\PdfSourceUrl}{\UnsetValue}% Set URL for the book's source code, to appear in colophon
+
+% Check that the cover author and PDF URL are set and if not, print a message to the log
+\newcommand{\CheckIsSet}[1]{{
+    \edef\first{\UnsetValue}
+    \edef\second{#1}
+    \ifx\first\second
+        \typeout{^^JYOU NEED TO SET \string#1\space IN hp-header.tex^^J}
+    \fi}}
+\CheckIsSet{\CoverAuthor}
+\CheckIsSet{\PdfSourceUrl}
