@@ -1,4 +1,35 @@
-\cleartoverso
+% We want the total number of real pages (sheets) to be a multiple of 4, and we
+% want the colophon to land on the last page (which will necessarily be an even
+% page). So we might need to insert up to 3 blank pages before the colophon.
+%
+% Note that the \include command used to include this file makes a new page, so
+% if the current page here is a multiple of 4, we don't need to insert any blank
+% page.
+%
+% First we calculate the current page number modulo 4:
+\makeatletter
+\@tempcnta=\c@sheetsequence% The sheetsequence counter defined by the memoir class
+\newcount\blobb
+\blobb=\c@sheetsequence
+\divide\@tempcnta by 4
+\multiply\@tempcnta by 4
+\multiply\@tempcnta by -1
+\advance\@tempcnta by \c@sheetsequence
+%
+% Now @tempcnta holds @sheetsequence % 4. We will add pages and increment @tempcnta
+% until it reaches 4 (unless it is 0, in which case there is no page to add).
+\ifnum\@tempcnta>0
+\loop
+\thispagestyle{empty}% Disable headers/footers
+\null% There must be "something" on the current page for \newpage to have an effect
+\newpage% Make new page
+\advance\@tempcnta by 1
+\ifnum\@tempcnta<4
+\repeat
+\fi
+\makeatother
+%
+% Now the current page is a muliple of 4. We put the colophon here.
 {\null\vfil%
 \thispagestyle{empty}\noindent\rightskip=0pt plus 1fil\leftskip=0pt plus 1fil\parfillskip=0pt%
 \vbox{
