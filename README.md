@@ -36,7 +36,9 @@ Lily Yao Lu has created cover images that match the book sizes. Since the files 
 [![Book6](covers/thumbnail10-Book6.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJMXdSUzVrN3JiSWc?usp=sharing)
 
 # Printing books
-I printed mine using [epubli](https://www.epubli.de/). The book size matches their "notebook" format.
+I printed mine using [epubli](https://www.epubli.de/). The book size matches their "notebook" format. 
+
+For some reason, epubli rejected the PDF of the third book (`hpmor-3.pdf`), so I [reprocessed](#building-the-pdfs) the file into `hpmor-3-fixed.pdf` and that one worked.
 
 # Building the PDFs
 All the necessary files (fonts, etc.) are included in the repository. The code compiles with LuaLaTex. XeLaTeX should also work but there might be formatting issues such as bad letter and word spacing. I used LuaLaTex 0.95.0 from TeX Live 2016.
@@ -46,6 +48,13 @@ If you want to make your own edition, you should start from the `master` branch.
 Before building the PDFs, you may want to set appropriate values for `\CoverAuthor` and `\PdfSourceUrl` in `hp-header.tex` (otherwise you will get warnings in the compilation logs). These values are used in the colophon, on the last page of each book.
 
 You can build the 6 books by running `make` twice (the second run is required to build the table of contents). Or you can build a single book with e.g. `make hpmor-1.pdf`. This is the same as running `lualatex hpmor-1`, except that it parses the compilation output and shows every underfull/overfull box message in red.
+
+For some reason, [epubli](https://www.epubli.de/) rejects the PDF of book 3. To solve this I convert it to PostScript and back to PDF:
+
+```
+pdftops hpmor-3.pdf hpmor-3.ps
+ps2pdf hpmor-3.ps hpmor-3-fixed.pdf
+```
 
 ## Hand-tuning the paragraphs
 There is some Lua code to help hand-tuning the layout of paragraphs. You can activate it by uncommenting the lines `\input{hand-tuning}` and `\ShowLoosenessHelp` in `hp-header.tex`. This will change the color of the last line in each paragraph that can be expanded or shrunk by one line (using the `\looseness` command). The color code is as follows:
