@@ -26,14 +26,14 @@ This is an edition in six books, as suggseted by the author. The book size is 13
 # Covers
 Lily Yao Lu has created cover images that match the book sizes. Since the files are big, they are stored in Google Drive folders that you can access by clicking the thumbnails below:
 
-[![Book1](covers/thumbnail10-Book1.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJZ0J5WDdfbkR0N0E?usp=sharing)
-[![Book2](covers/thumbnail10-Book2.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJQVYxR1dBVV9FeTA?usp=sharing)
+[![Book1](covers/thumbnail10-Book1.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJZ0J5WDdfbkR0N0E?resourcekey=0-ROE1CtqAD4Gyi4n20j9R2w&usp=sharing)
+[![Book2](covers/thumbnail10-Book2.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJQVYxR1dBVV9FeTA?resourcekey=0-ojMkihdnNxqx2z8QJc3yNA&usp=sharing)
 
-[![Book3](covers/thumbnail10-Book3.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJU2dQc1FJR1V4X3M?usp=sharing)
-[![Book4](covers/thumbnail10-Book4.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJZnlCNjB4dUxXd0E?usp=sharing)
+[![Book3](covers/thumbnail10-Book3.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJU2dQc1FJR1V4X3M?resourcekey=0-jwacaaFg_vD_a5J85yMXJw&usp=sharing)
+[![Book4](covers/thumbnail10-Book4.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJZnlCNjB4dUxXd0E?resourcekey=0-FjeAMrcB4xl_rWUa2I2uCw&usp=sharing)
 
-[![Book5](covers/thumbnail10-Book5.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJakN2ODN3N0U5Yzg?usp=sharing)
-[![Book6](covers/thumbnail10-Book6.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJMXdSUzVrN3JiSWc?usp=sharing)
+[![Book5](covers/thumbnail10-Book5.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJakN2ODN3N0U5Yzg?resourcekey=0-RMIk_sPLoiTETML7zmCHrQ&usp=sharing)
+[![Book6](covers/thumbnail10-Book6.png?raw=true)](https://drive.google.com/drive/folders/0B4xgL7G7xKPJMXdSUzVrN3JiSWc?resourcekey=0-7si7NAsPBe4dWthHQzumVg&usp=sharing)
 
 # Printing books
 I printed mine using [epubli](https://www.epubli.de/). The book size matches their "notebook" format. 
