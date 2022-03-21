@@ -1,1 +1,1 @@
-High-resolution covers created by Lily Yao Lu are available at [https://drive.google.com/drive/folders/0B4xgL7G7xKPJMXVHaGtuaFZOQUE?usp=sharing].
+High-resolution covers created by Lily Yao Lu are available in [this Google Drive folder](https://drive.google.com/drive/folders/0B4xgL7G7xKPJMXVHaGtuaFZOQUE?resourcekey=0-HmLPcv_velLd7ofMe5D7HQ&usp=sharing).
