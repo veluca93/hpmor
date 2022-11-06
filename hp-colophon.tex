@@ -1,18 +1,18 @@
-% We want the total number of real pages (sheets) to be a multiple of 4, and we
+% We want the total number of real pages (sheets) to be a multiple of 2, and we
 % want the colophon to land on the last page (which will necessarily be an even
-% page). So we might need to insert up to 3 blank pages before the colophon.
+% page). So we might need to insert up to 1 blank page before the colophon.
 %
 % Note that the \include command used to include this file makes a new page, so
 % if the current page here is a multiple of 4, we don't need to insert any blank
 % page.
 %
-% First we calculate the current page number modulo 4:
+% First we calculate the current page number modulo 2:
 \makeatletter
 \@tempcnta=\c@sheetsequence% The sheetsequence counter defined by the memoir class
 \newcount\blobb
 \blobb=\c@sheetsequence
-\divide\@tempcnta by 4
-\multiply\@tempcnta by 4
+\divide\@tempcnta by 2
+\multiply\@tempcnta by 2
 \multiply\@tempcnta by -1
 \advance\@tempcnta by \c@sheetsequence
 %
@@ -24,25 +24,22 @@
 \null% There must be "something" on the current page for \newpage to have an effect
 \newpage% Make new page
 \advance\@tempcnta by 1
-\ifnum\@tempcnta<4
+\ifnum\@tempcnta<2
 \repeat
 \fi
 \makeatother
 %
-% Now the current page is a muliple of 4. We put the colophon here.
+% Now the current page is a muliple of 2. We put the colophon here.
 {\null\vfil%
 \thispagestyle{empty}\noindent\rightskip=0pt plus 1fil\leftskip=0pt plus 1fil\parfillskip=0pt%
 \vbox{
 \parshape 1 0em 21em
 \noindent
 \leftskip=0pt\rightskip=0pt\parfillskip=0pt plus 1fil{}\emph{This book was
-formatted by fans of the story. The text was set in 10½~point
-URW~Garamond~No.~8. Parseltongue was set in Huerta Tipografica's Alegreya Sans
-Light Italic. Chapter headings were set in Lumos, by Sarah McFalls, inspired by
-the display font used in the US editions of the Harry Potter books. The
-cover was created by \CoverAuthor. Typesetting was done using
-\emph{\LaTeX}; the source code can be found at
-\mbox{\url{\PdfSourceUrl}}.  This book was built on \today.}
+  formatted by fans of the story. Typesetting was done using \emph{\LaTeX}; the
+  starting point source code can be found at
+  \mbox{\href{https://github.com/knuesel/hpmor}{github.com/knuesel/hpmor}}.
+  This book was built on \today.}
 
 }\vskip\footskip%
 \vfil\vfil

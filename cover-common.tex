@@ -1,0 +1,351 @@
+\usepackage{calc}
+
+\newlength{\safetymargin}
+\setlength{\safetymargin}{0.625in}
+
+\newlength{\trimmargin}
+\setlength{\trimmargin}{0.125in}
+
+\newlength{\wraparea}
+\setlength{\wraparea}{0.75in}
+
+\newlength{\bookcoverwidth}
+\setlength{\bookcoverwidth}{6.125in}
+
+\newlength{\bookcoverheight}
+\setlength{\bookcoverheight}{9.25in}
+
+\newlength{\coverpagewidth}
+\setlength{\coverpagewidth}{2\wraparea+\spinewidth+2\bookcoverwidth}
+
+\newlength{\coverpageheight}
+\setlength{\coverpageheight}{2\wraparea+\bookcoverheight}
+
+\usepackage{tikz}
+\usepackage{tikzpagenodes}
+\usetikzlibrary{arrows,calc}
+\usepackage{xcolor-material}
+\usepackage{graphicx}
+\usepackage[none]{hyphenat}
+
+\newlength{\backtextwidth}
+\setlength{\backtextwidth}{\bookcoverwidth-2\safetymargin-20pt + \trimmargin}
+
+
+\usepackage{contour}
+\usepackage{fontspec}		% For the many fonts
+
+\setmainfont[
+, ExternalLocation=fonts/alegreya-sans/
+, Ligatures={Common,TeX}
+, UprightFont=*-Regular
+, ItalicFont=*-Italic
+, BoldFont=*-Bold
+]{AlegreyaSans}
+
+%
+% Chapters, headings, etc.: HogW
+\newfontface\hp[ExternalLocation=fonts/hogw/, WordSpace=1.85]{HogW}
+
+% Fonts for lettrines.
+\newfontface\lettrinefont[
+  ExternalLocation=fonts/magicschool/,
+  LetterSpace=3.0,
+]{MagicSchool}
+
+\newfontface\titlefont[
+  ExternalLocation=fonts/magicschool/
+]{MagicSchoolOne}
+
+\newcommand{\fs}[1]{\fontsize{#1}{#1}\selectfont}
+
+\newcommand{\backcovertext}{
+\fs{14pt}
+
+\textit{Something, somewhere, somewhen, must have happened differently...}
+
+\vspace{1em}
+
+\textbf{PETUNIA EVANS} married Michael Verres, an Oxford Professor of
+Biochemistry.
+
+
+\vspace{1em}
+
+\textbf{HARRY JAMES POTTER-EVANS-VERRES} grew up in a house filled to the brim
+with books. He once bit a math teacher who didn't know what a logarithm was.
+He's read Godel, Escher, Bach and Judgment Under Uncertainty: Heuristics and
+Biases and volume one of The Feynman Lectures on Physics. And despite what
+everyone who's met him seems to fear, he doesn't want to become the next Dark
+Lord. He was raised better than that. He wants to discover the laws of magic
+and become a god.
+
+\vspace{1em}
+
+\textbf{HERMIONE GRANGER} is doing better than him in every class, except
+broomstick riding.
+
+\vspace{1em}
+
+\textbf{DRACO MALFOY} is exactly what you would expect an eleven year old boy
+to be like if Darth Vader were his doting father.
+
+\vspace{1em}
+
+\textbf{PROFESSOR QUIRRELL} is living his lifelong dream of teaching Defense
+Against the Dark Arts, or as he prefers to call his class, Battle Magic. His
+students are all wondering what's going to go wrong with the Defense Professor
+this time.
+
+\vspace{1em}
+
+\textbf{DUMBLEDORE} is either insane, or playing some vastly deeper game which
+involves setting fire to a chicken.
+
+\vspace{1em}
+
+\textbf{DEPUTY HEADMISTRESS MINERVA MCGONAGALL} needs to go off somewhere
+private and scream for a while.
+
+\vspace{1em}
+
+\textit{You ain't guessin' where this one's going.}
+}
+
+
+\newlength{\backxbpos}
+\setlength{\backxbpos}{\wraparea + \safetymargin}
+
+\newlength{\backxepos}
+\setlength{\backxepos}{\backxbpos + \bookcoverwidth - 2\safetymargin + \trimmargin}
+
+\newlength{\backybpos}
+\setlength{\backybpos}{-\wraparea - \safetymargin}
+
+\newlength{\backyepos}
+\setlength{\backyepos}{-\coverpageheight + \safetymargin + \wraparea}
+
+
+\begin{document}
+\begin{tikzpicture}
+\clip (0,0) rectangle (\coverpagewidth,-\coverpageheight);
+\node
+  [inner sep=0pt]
+  (bg) at (0.5\coverpagewidth, -0.5\coverpageheight)
+  {\includegraphics[height=\coverpageheight]{\coverimage}};
+
+\coordinate (b00) at (\backxbpos, \backybpos);
+\coordinate (b01) at (\backxbpos, \backyepos);
+\coordinate (b10) at (\backxepos, \backybpos);
+\coordinate (b11) at (\backxepos, \backyepos);
+
+\coordinate (b00c1) at ($(b00)+(0, -1.1cm)$);
+\coordinate (b00c2) at ($(b00c1)+(0.2cm, 0)$);
+\coordinate (b00c3) at ($(b00c2)+(0, 0.6cm)$);
+\coordinate (b00e1) at ($(b00c3)+(-0.5cm, 0)$);
+\coordinate (b00c4) at ($(b00e1)!0.5!(b00c3)$);
+\coordinate (b00e2) at ($(b00e1)+(0, -0.35cm)$);
+\coordinate (b00e3) at (b00c4 |- b00e2);
+\coordinate (b00c5) at ($(b00c4) + (0, 0.4cm)$);
+
+
+\coordinate (b00C1) at ($(b00)+(1.1cm, 0)$);
+\coordinate (b00C2) at ($(b00C1)+(0, -0.2cm)$);
+\coordinate (b00C3) at ($(b00C2)+(-0.6cm, 0)$);
+\coordinate (b00E1) at ($(b00C3)+(0, 0.5cm)$);
+\coordinate (b00C4) at ($(b00E1)!0.5!(b00C3)$);
+\coordinate (b00E2) at ($(b00E1)+(0.35cm, 0)$);
+\coordinate (b00E3) at (b00E2 |- b00C4);
+\coordinate (b00C5) at ($(b00C4) + (-0.4cm, 0)$);
+
+\coordinate (b00cC) at (b00C5 |- b00c5);
+\coordinate (b00eE) at (b00E2 -| b00e2);
+
+\coordinate (b10c1) at ($(b10)+(0, -1.1cm)$);
+\coordinate (b10c2) at ($(b10c1)+(-0.2cm, 0)$);
+\coordinate (b10c3) at ($(b10c2)+(0, 0.6cm)$);
+\coordinate (b10e1) at ($(b10c3)+(0.5cm, 0)$);
+\coordinate (b10c4) at ($(b10e1)!0.5!(b10c3)$);
+\coordinate (b10e2) at ($(b10e1)+(0, -0.35cm)$);
+\coordinate (b10e3) at (b10c4 |- b10e2);
+\coordinate (b10c5) at ($(b10c4) + (0, 0.4cm)$);
+
+
+\coordinate (b10C1) at ($(b10)+(-1.1cm, 0)$);
+\coordinate (b10C2) at ($(b10C1)+(0, -0.2cm)$);
+\coordinate (b10C3) at ($(b10C2)+(0.6cm, 0)$);
+\coordinate (b10E1) at ($(b10C3)+(0, 0.5cm)$);
+\coordinate (b10C4) at ($(b10E1)!0.5!(b10C3)$);
+\coordinate (b10E2) at ($(b10E1)+(-0.35cm, 0)$);
+\coordinate (b10E3) at (b10E2 |- b10C4);
+\coordinate (b10C5) at ($(b10C4) + (0.4cm, 0)$);
+
+\coordinate (b10cC) at (b10C5 |- b10c5);
+\coordinate (b10eE) at (b10E2 -| b10e2);
+
+\coordinate (b11c1) at ($(b11)+(0, 1.1cm)$);
+\coordinate (b11c2) at ($(b11c1)+(-0.2cm, 0)$);
+\coordinate (b11c3) at ($(b11c2)+(0, -0.6cm)$);
+\coordinate (b11e1) at ($(b11c3)+(+0.5cm, 0)$);
+\coordinate (b11c4) at ($(b11e1)!0.5!(b11c3)$);
+\coordinate (b11e2) at ($(b11e1)+(0, 0.35cm)$);
+\coordinate (b11e3) at (b11c4 |- b11e2);
+\coordinate (b11c5) at ($(b11c4) + (0, -0.4cm)$);
+
+
+\coordinate (b11C1) at ($(b11)+(-1.1cm, 0)$);
+\coordinate (b11C2) at ($(b11C1)+(0, 0.2cm)$);
+\coordinate (b11C3) at ($(b11C2)+(0.6cm, 0)$);
+\coordinate (b11E1) at ($(b11C3)+(0, -0.5cm)$);
+\coordinate (b11C4) at ($(b11E1)!0.5!(b11C3)$);
+\coordinate (b11E2) at ($(b11E1)+(-0.35cm, 0)$);
+\coordinate (b11E3) at (b11E2 |- b11C4);
+\coordinate (b11C5) at ($(b11C4) + (0.4cm, 0)$);
+
+\coordinate (b11cC) at (b11C5 |- b11c5);
+\coordinate (b11eE) at (b11E2 -| b11e2);
+
+\coordinate (b01c1) at ($(b01)+(0, 1.1cm)$);
+\coordinate (b01c2) at ($(b01c1)+(0.2cm, 0)$);
+\coordinate (b01c3) at ($(b01c2)+(0, -0.6cm)$);
+\coordinate (b01e1) at ($(b01c3)+(-0.5cm, 0)$);
+\coordinate (b01c4) at ($(b01e1)!0.5!(b01c3)$);
+\coordinate (b01e2) at ($(b01e1)+(0, 0.35cm)$);
+\coordinate (b01e3) at (b01c4 |- b01e2);
+\coordinate (b01c5) at ($(b01c4) + (0, -0.4cm)$);
+
+
+\coordinate (b01C1) at ($(b01)+(1.1cm, 0)$);
+\coordinate (b01C2) at ($(b01C1)+(0, 0.2cm)$);
+\coordinate (b01C3) at ($(b01C2)+(-0.6cm, 0)$);
+\coordinate (b01E1) at ($(b01C3)+(0, -0.5cm)$);
+\coordinate (b01C4) at ($(b01E1)!0.5!(b01C3)$);
+\coordinate (b01E2) at ($(b01E1)+(0.35cm, 0)$);
+\coordinate (b01E3) at (b01E2 |- b01C4);
+\coordinate (b01C5) at ($(b01C4) + (-0.4cm, 0)$);
+
+\coordinate (b01cC) at (b01C5 |- b01c5);
+\coordinate (b01eE) at (b01E2 -| b01e2);
+
+\newcommand{\fancyborder}{
+  (b00C1) --
+  (b10C1) -- (b10C2) -- (b10C3) --
+    (b10E1) -- (b10E2) -- (b10E3) -- (b10E2) -- (b10E1) --
+  (b10C4) -- (b10C5) --
+  (b10cC) -- (b10eE |- b10cC) -- (b10eE) -- (b10cC |- b10eE) -- (b10cC) --
+  (b10c5) -- (b10c4) --
+    (b10e1) -- (b10e2) -- (b10e3) -- (b10e2) -- (b10e1) --
+  (b10c3) -- (b10c2) -- (b10c1) --
+  (b11c1) -- (b11c2) -- (b11c3) --
+    (b11e1) -- (b11e2) -- (b11e3) -- (b11e2) -- (b11e1) --
+  (b11c4) -- (b11c5) --
+  (b11cC) -- (b11cC |- b11eE) -- (b11eE) -- (b11eE |- b11cC) -- (b11cC) --
+  (b11C5) -- (b11C4) --
+    (b11E1) -- (b11E2) -- (b11E3) -- (b11E2) -- (b11E1) --
+  (b11C3) -- (b11C2) -- (b11C1) --
+  (b01C1) -- (b01C2) -- (b01C3) --
+    (b01E1) -- (b01E2) -- (b01E3) -- (b01E2) -- (b01E1) --
+  (b01C4) -- (b01C5) --
+  (b01cC) -- (b01eE |- b01cC) -- (b01eE) -- (b01cC |- b01eE) -- (b01cC) --
+  (b01c5) -- (b01c4) --
+    (b01e1) -- (b01e2) -- (b01e3) -- (b01e2) -- (b01e1) --
+  (b01c3) -- (b01c2) -- (b01c1) --
+  (b00c1) -- (b00c2) -- (b00c3) --
+    (b00e1) -- (b00e2) -- (b00e3) -- (b00e2) -- (b00e1) --
+  (b00c4) -- (b00c5) --
+  (b00cC) -- (b00cC |- b00eE) -- (b00eE) -- (b00eE |- b00cC) -- (b00cC) --
+  (b00C5) -- (b00C4) --
+    (b00E1) -- (b00E2) -- (b00E3) -- (b00E2) -- (b00E1) --
+  (b00C3) -- (b00C2) -- (b00C1) --
+  cycle
+}
+
+\draw[fill=black, opacity=0.4]
+  (b00C1) --
+  (b10C1) -- (b10C2) -- (b10C3) --
+  (b10C4) -- (b10C5) --
+  (b10cC) --
+  (b10c5) -- (b10c4) --
+  (b10c3) -- (b10c2) -- (b10c1) --
+  (b11c1) -- (b11c2) -- (b11c3) --
+  (b11c4) -- (b11c5) --
+  (b11cC) --
+  (b11C5) -- (b11C4) --
+  (b11C3) -- (b11C2) -- (b11C1) --
+  (b01C1) -- (b01C2) -- (b01C3) --
+  (b01C4) -- (b01C5) --
+  (b01cC) --
+  (b01c5) -- (b01c4) --
+  (b01c3) -- (b01c2) -- (b01c1) --
+  (b00c1) -- (b00c2) -- (b00c3) --
+  (b00c4) -- (b00c5) --
+  (b00cC) --
+  (b00C5) -- (b00C4) --
+  (b00C3) -- (b00C2) -- (b00C1) --
+  cycle
+;
+
+\draw[draw=black, line width=3pt] \fancyborder;
+\draw[draw=white, line width=2pt] \fancyborder;
+
+\node
+  [inner sep=0pt,text width=\backtextwidth,text=white,align=justify]
+  (bct) at (0.5\bookcoverwidth+0.5\trimmargin+\wraparea,-0.5\bookcoverheight-\wraparea+0.7in)
+  {\backcovertext};
+
+\node
+  [inner sep=0pt,text=white, text width=1.5in,align=center]
+  (bauts) at (0.5\coverpagewidth,-\wraparea-0.6in)
+  {\fs{21pt} \hp Eliezer \\[0.3em] Yudkowsky};
+
+\node
+  [inner sep=0pt,text=white, text width=1in,align=center]
+  (bidxs) at (0.5\coverpagewidth,-\wraparea+0.7in-\bookcoverheight)
+  {\fs{60pt} \lettrinefont \booknumber};
+
+\node
+  [inner sep=0pt,text=white, rotate=-90,align=center]
+  (bidxs) at (0.5\coverpagewidth,-0.5\coverpageheight)
+  {\fs{30pt} \hp{HJPEV and the \booktitle}};
+
+\node
+  [inner sep=0pt,text=white, text width=\backtextwidth,align=center]
+  (bauts) at (1.5\bookcoverwidth + \wraparea - 0.5\trimmargin + \spinewidth,-\wraparea-1in)
+  {\fs{25pt} \hp Eliezer Yudkowsky};
+
+\node
+  [inner sep=0pt,text=white, text width=\backtextwidth,align=center]
+  (bauts) at (1.5\bookcoverwidth + \wraparea - 0.5\trimmargin + \spinewidth,-0.5\coverpageheight)
+  {\titlefont
+    {\fs{55pt} Harry James Potter-Evans-Verres } \\[1cm]
+    {\fs{42pt} and the } \\[1cm]
+    {\fs{55pt} \booktitle}
+  };
+
+\node
+  [inner sep=0pt,text=white, text width=\backtextwidth+20pt,align=center]
+  (bauts) at (1.5\bookcoverwidth + \wraparea - 0.5\trimmargin + \spinewidth,-\coverpageheight+\wraparea+\safetymargin+0.5in)
+  {\fs{20pt} \hp  Harry Potter and the Methods of Rationality \\[0.2em] Book {\lettrinefont\booknumber{}} of {\lettrinefont III}};
+
+\def\a{3.5cm}
+\def\dhx{0.5\bookcoverwidth+\wraparea}
+\def\dhy{-\bookcoverheight-\wraparea+1.2in}
+\pgfmathsetlengthmacro\radius{\a/2 * tan(30)}
+\pgfmathsetlengthmacro\centertocorner{\a * tan(30)}
+\draw[line width=2pt, white]
+  (\dhx, \dhy) ++(-150:\centertocorner) -- +(60:\a) -- +(\a, 0) -- cycle
+  (\dhx, \dhy) ++(-150:\centertocorner) +(\a/2, 0) -- +(60:\a)
+  (\dhx, \dhy) ++(-150:\centertocorner) +(\a/2, \radius) circle[radius=\radius-.75\pgflinewidth];
+
+
+\ifshowshape
+\draw[blue, very thin] (\wraparea, -\wraparea) rectangle (\coverpagewidth-\wraparea, -\coverpageheight+\wraparea);
+\draw[purple, very thin] (\wraparea + \bookcoverwidth, -\wraparea) rectangle +(\spinewidth, -\bookcoverheight);
+\draw[gray, very thin] (\wraparea + \safetymargin, -\wraparea - \safetymargin) rectangle +(\bookcoverwidth-2\safetymargin+\trimmargin, -\bookcoverheight+2\safetymargin);
+\draw[gray, very thin] (\wraparea + \safetymargin + \bookcoverwidth + \spinewidth - \trimmargin, -\wraparea - \safetymargin) rectangle +(\bookcoverwidth-2\safetymargin+\trimmargin, -\bookcoverheight+2\safetymargin);
+\draw[gray, very thin] (\wraparea + \bookcoverwidth + \trimmargin, -\wraparea - \trimmargin) rectangle +(\spinewidth-2\trimmargin, -\bookcoverheight + 2\trimmargin);
+\fi
+\end{tikzpicture}
+
+
+\end{document}

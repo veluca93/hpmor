@@ -1,4 +1,4 @@
-\documentclass[11pt,extrafontsizes,twoside,openany,final]{memoir} % 11pt is scaled down to 10.5 in \setmainfont call
+\documentclass[11pt,extrafontsizes,twoside,final]{memoir} % 11pt is scaled down to 10.5 in \setmainfont call
 
 % THIS DOCUMENT REQUIRES LuaLaTeX TO COMPILE!
 % XeLaTeX should work (if the \ShowLoosenessHelp hand-tuning macro is not used)
@@ -12,6 +12,13 @@
 \usepackage{fontspec}		% For the many fonts
 \usepackage{censor}         % For redacted name in chapter 89
 \usepackage{xstring}        % Needed for \IfInteger...
+
+\usepackage{svg}
+\usepackage{varwidth}
+\usepackage{eso-pic}
+\usepackage{tikz}
+\usetikzlibrary{calc,chains,math}
+\usepackage[object=vectorian]{pgfornament}
 
 \usepackage[bookmarks=true,unicode=true,pdfborder={0 0 0},
 	pdftitle={HPMOR},
@@ -55,20 +62,34 @@
 %\setstocksize{205mm}{135mm}
 %\settrimmedsize{\stockheight}{\stockwidth}{*}
 %\settrims{0mm}{0mm}
-\setstocksize{211mm}{141mm}% Size of paper fed to the printer
-\settrimmedsize{205mm}{135mm}{*}% Size of paper after trimming the edges
-\settrims{3mm}{3mm}% Amount trimmed from the top and fore-edge
-\settypeblocksize{164mm}{107mm}{*} % Size of main text (will be adjusted below)
+%\setstocksize{211mm}{141mm}% Size of paper fed to the printer
+%\settrimmedsize{205mm}{135mm}{*}% Size of paper after trimming the edges
+%\settrims{3mm}{3mm}% Amount trimmed from the top and fore-edge
+%\settypeblocksize{164mm}{107mm}{*} % Size of main text (will be adjusted below)
 %\setbinding{5mm}% Space reserved on spine side for binding: not used, margins set explicitely
 %\setlrmargins{*}{*}{1.1}% Ratio between spine and edge margins: unused, margins set explicitely
 % Spine and fore-edge margins: spine margin should look a bit smaller (as there
 % are two next to each other) but we must account for the binding.
-\setlrmarginsandblock{21mm}{17mm}{*}
-\setulmargins{*}{*}{1.2}% Ratio between up and down margins
-\setheadfoot{\baselineskip}{2\baselineskip}% Header height and skip from text bottom to footer bottom
-\setheaderspaces{*}{*}{*}% Equal spacing above and below header
-\settypeoutlayoutunit{mm}% Print dimensions in millimeters in compilation output
-\checkandfixthelayout% Apply the layout
+%\setlrmarginsandblock{21mm}{17mm}{*}
+%\setulmargins{*}{*}{1.2}% Ratio between up and down margins
+%\setheadfoot{\baselineskip}{2\baselineskip}% Header height and skip from text bottom to footer bottom
+%\setheaderspaces{*}{*}{*}% Equal spacing above and below header
+%\settypeoutlayoutunit{mm}% Print dimensions in millimeters in compilation output
+%\checkandfixthelayout% Apply the layout
+\usepackage[
+  paperwidth=6.25in,
+  paperheight=9.25in,
+  inner=2.1cm,
+  outer=1.625cm,
+  top=2.125cm,
+  bottom=2.125cm,
+  headsep  = 0.7cm,
+  footskip = 1.0cm,
+  columnsep=1.5cm,
+  headheight=1.5cm
+]{geometry}
+
+
 
 %
 % Font setup: URW Garamond No. 8
@@ -80,48 +101,44 @@
 , ItalicFont=*-Italic
 , BoldFont=*-Bold
 , BoldItalicFont=*-Bold-Italic
-, Scale=0.95
 ]{GaramondNo8}
+
 %
-% Chapters, headings, etc.: Lumos (extra spacing looks much better)
-\newfontface\hp[ExternalLocation=fonts/lumos/, LetterSpace=6.0, WordSpace=1.85]{Lumos}
+% Chapters, headings, etc.: HogW (extra spacing looks much better)
+\newfontface\hp[ExternalLocation=fonts/hogw/, LetterSpace=6.0, WordSpace=1.85]{HogW}
+
 % Slightly scaled up font, so that we can get a size between the 11pt \footnotesize and \scriptsize
-\newfontface\hpScaledUp[ExternalLocation=fonts/lumos/, LetterSpace=6.0, WordSpace=1.85, Scale=1.05]{Lumos}
-% Uppercase Lumos, used in the title pages
-\newcommand{\lumos}[1]{{\hp\MakeUppercase{#1}}}
-% Chapter numbers: Lumos (extreme spacing for effect)
-\newfontface\hpchap[ExternalLocation=fonts/lumos/, LetterSpace=40.0, WordSpace=5.0]{Lumos}
-%
-% Font used to draw the magic star
-\newfontface\starfont[ExternalLocation=fonts/]{Miscelanea.ttf}
-%
-% Draws a "magic star", used as a decoration
-\newcommand*{\Star}{{\starfont{}*}}
-%
-% Draws three "magic stars", used as a decoration everywhere
-\newcommand*{\Stars}{{\large\Star\kern-.6ex\lower1.3ex\hbox{\large\Star}%
-    \kern-.1ex\raise.2ex\hbox{\tiny\Star}\spacefactor1000}}
-%
-% Parseltongue
-\newfontface\ptsansi[
-, ExternalLocation=fonts/alegreya-sans/
-, Ligatures={Common,TeX}
-, UprightFont=*-Light
-, ItalicFont=*-LightItalic
-, BoldFont=*-Regular
-, BoldItalicFont=*-Italic
-, Scale=0.95
-]{AlegreyaSans}
+\newfontface\hpScaledUp[ExternalLocation=fonts/hogw/, LetterSpace=6.0, WordSpace=1.85, Scale=1.1]{HogW}
+
+% Uppercase HogW, used in the title pages
+\newcommand{\hogw}[1]{{\hp\MakeUppercase{#1}}}
+
+% Chapter numbers: HogW (extreme spacing for effect)
+\newfontface\hpchap[ExternalLocation=fonts/hogw/, LetterSpace=6.0, WordSpace=1.8]{HogW}
+
+% Fonts for lettrines.
+\newfontface\lettrinefont[
+  ExternalLocation=fonts/magicschool/,
+  LetterSpace=3.0,
+]{MagicSchool}
+
 
 %
 % Section break with three spaced stars
 %
 \newcommand{\sbreak}{%
+    \SomeVSpace%
+    \par\noindent%
+    \hfill\raisebox{-.5ex}{\newpgfornamentfamily{vectorian}\pgfornament[width=1.5in]{88}}\hfill\null% So the \hfill is not removed
+    \SomeVSpace%
     \par
-    \SomeVSpace
-    \hfill\raisebox{-.5ex}{\Star\qquad\Star\qquad\Star}\hfill\null% So the \hfill is not removed
-    \SomeVSpace
-    \par\noindent
+}
+
+\tikzset{
+  max width/.style args={#1}{
+    execute at begin node={\begin{varwidth}{#1}\begin{center}},
+    execute at end node={\end{center}\end{varwidth}}
+  }
 }
 
 %
@@ -130,7 +147,7 @@
 \makechapterstyle{evans}{%
 	\renewcommand*{\chapnamefont}{\hpchap\normalsize}
 	\renewcommand*{\chapnumfont}{\chapnamefont\normalsize}
-	\renewcommand*{\chaptitlefont}{\hp\large}
+	\renewcommand*{\chaptitlefont}{\hp\Large}
 	
 	\setlength{\beforechapskip}{0pt}
 	\setlength{\midchapskip}{1.1cm plus .5\baselineskip minus .5\baselineskip}
@@ -142,7 +159,82 @@
 	\renewcommand*{\printchaptername}{}% Not needed, "CHAPTER" added above
 	
 	\renewcommand*{\printchaptertitle}[1]{% "A DAY OF VERY LOW PROBABILITY"
-		\begin{center}\chaptitlefont \MakeUppercase{##1}\end{center}}
+  \begin{center}
+    \begin{newfamily}[pgfhan]
+      \begin{tikzpicture}
+\if0
+        \tikzset{every node/.append style={inner sep=0pt}}
+        \node[outer sep=10pt,max width=0.7\textwidth] (title) {\chaptitlefont \MakeUppercase{##1}};
+        \node (nw) at (title.north west) {\pgfornament[scale=0.25]{12}};
+        \node (ne) at (title.north east) {\pgfornament[scale=0.25,symmetry=v]{12}};
+        \node (sw) at (title.south west){\pgfornament[scale=0.25,symmetry=h]{12}};
+        \node (se) at (title.south east){\pgfornament[scale=0.25,symmetry=c]{12}};
+        \tikzmath{%
+          coordinate \ne, \nw, \se, \sw;
+          int \countw, \counth;
+          \ne = (ne);
+          \nw = (nw);
+          \se = (se);
+          \sw = (sw);
+          \wdt = \nex - \nwx; 
+          \hgt = \ney - \sey;
+          \countw = \wdt / 50;
+          \counth = \hgt / 50;
+          if \countw > 0 then {
+            { \node[anchor=east, yshift=20] at (\ne) {\pgfornament[scale=0.25]{32}}; };
+            { \node[anchor=east, yshift=-20] at (\se) {\pgfornament[scale=0.25]{32}}; };
+            for \x in {0,...,\countw-1} {
+              \xshift = 50 * \x;
+              { \node[anchor=west, yshift=20, xshift=\xshift] at (\nw) {\pgfornament[scale=0.25]{32}}; };
+              { \node[anchor=west, yshift=-20, xshift=\xshift] at (\sw) {\pgfornament[scale=0.25]{32}}; };
+            };
+          };
+          if \counth > 0 then {
+            { \node[anchor=east, xshift=20, rotate=90] at (\ne) {\pgfornament[scale=0.25]{32}}; };
+            { \node[anchor=east, xshift=-20, rotate=90] at (\nw) {\pgfornament[scale=0.25]{32}}; };
+            for \y in {0,...,\counth-1} {
+              \yshift = 50 * \y;
+              { \node[anchor=west, xshift=20, yshift=\yshift, rotate=90] at (\se) {\pgfornament[scale=0.25]{32}}; };
+              { \node[anchor=west, xshift=-20, yshift=\yshift, rotate=90] at (\sw) {\pgfornament[scale=0.25]{32}}; };
+            };
+          };
+        }
+\fi
+        \tikzset{every node/.append style={inner sep=0pt}}
+        \node[outer sep=15pt,max width=0.7\textwidth] (title) {\chaptitlefont \MakeUppercase{##1}};
+        \node (nw) at (title.north west) {\pgfornament[scale=0.25]{6}};
+        \node (ne) at (title.north east) {\pgfornament[scale=0.25,symmetry=v]{16}};
+        \node (sw) at (title.south west){\pgfornament[scale=0.25,symmetry=h]{16}};
+        \node (se) at (title.south east){\pgfornament[scale=0.25,symmetry=c]{6}};
+        \tikzmath{%
+          coordinate \ne, \nw, \se, \sw;
+          int \countw, \counth;
+          \ne = (ne);
+          \nw = (nw);
+          \se = (se);
+          \sw = (sw);
+          \wdt = \nex - \nwx; 
+          \hgt = \ney - \sey;
+          \countw = \wdt / 50;
+          \counth = \hgt / 50;
+          if \countw > 0 then {
+            for \x in {0,...,\countw-1} {
+              \xshift = 50 * \x + 25;
+              { \node[anchor=west, yshift=23.8, xshift=\xshift] at (\nw) {\pgfornament[scale=0.25]{30}}; };
+              { \node[anchor=east, yshift=-23.8, xshift=-\xshift] at (\se) {\pgfornament[scale=0.25]{30}}; };
+            };
+          };
+          if \counth > 0 then {
+            for \y in {0,...,\counth-1} {
+              \yshift = 50 * \y + 25;
+              { \node[anchor=east, xshift=-23.8, yshift=-\yshift, rotate=90] at (\nw) {\pgfornament[scale=0.25]{30}}; };
+              { \node[anchor=west, xshift=23.8, yshift=\yshift, rotate=90] at (\se) {\pgfornament[scale=0.25]{30}}; };
+            };
+          };
+        }
+      \end{tikzpicture}
+    \end{newfamily}
+  \end{center}}
 	
 	\renewcommand*{\chaptermark}[1]{% "CHAPTER ONE" and "A DAY OF..."
 		\markboth{\MakeUppercase{\chaptername}~\thechapter}%
@@ -214,14 +306,14 @@
 
 % Lettrine font pick and configuration
 %
-\renewcommand{\LettrineFontHook}{\hp} % Uses Lumos for the large letter
+\renewcommand{\LettrineFontHook}{\lettrinefont} % Uses Lumos for the large letter
 \renewcommand{\LettrineTextFont}{} % Normal font for the rest of the first word
 % For when the first word is in italics, use this command instead
 \newcommand{\lettrinemph}[3][]{\lettrine[#1]{#2}{\emph{#3}}}
 \setcounter{DefaultLines}{1}
 % Large cap instead of drop cap because of many short first lines
-\renewcommand{\DefaultLoversize}{0}
-\renewcommand{\DefaultLraise}{0}
+\renewcommand{\DefaultLoversize}{0.0}
+\renewcommand{\DefaultLraise}{0.0}
 
 %
 % Page numbering, footer, header
@@ -249,8 +341,13 @@
 % package.
 \newcommand*{\el}{\leavevmode\kern \ellipsisgap\dots} % Ellipsis definition
 %
+
+\newcommand{\Snake}{\includesvg[inkscapedpi=300,height=0.5\baselineskip]{snake}}
+\newcommand{\OSnake}{\scalebox{-1}[1]{\Snake}}
+\newcommand{\CSnake}{\Snake}
+
 % Logical formatting macros
-\newcommand*\parsel[1]{{\ptsansi\textit{#1}}} % Parseltongue
+\newcommand*\parsel[1]{\OSnake\textit{#1}\CSnake} % Parseltongue
 \newcommand*{\prophecy}[1]{\textsc{#1}} % Prophecies
 \newcommand*{\headline}[1]{\begin{center}\textsc{#1}\end{center}} % Newspaper headlines
 \newcommand*{\inlineheadline}[1]{\textsc{#1}} % Newspaper headlines inline with text
@@ -267,8 +364,8 @@
 \setlength{\gridvskip}{1\baselineskip}
 \newlength{\gridsmallvskip}
 \setlength{\gridsmallvskip}{.5\baselineskip}
-\newcommand*{\SomeVSpace}{\vskip \gridvskip\relax}
-\newcommand*{\SmallVSpace}{\vskip \gridsmallvskip\relax}
+\newcommand*{\SomeVSpace}{\vskip\gridvskip\relax}
+\newcommand*{\SmallVSpace}{\vskip\gridsmallvskip\relax}
 
 % Subsections style and spacing (Aftermath:, Act:, etc.)
 \setsubsecheadstyle{\scshape} % Subsection titles in small caps
@@ -356,8 +453,8 @@ Dum-ble-dore thou-sand Huf-fle-puff Huf-fle-puffs Slyther-in Slyther-ins Har-ry
 Flit-wick win-gar-di-um le-viosa Dra-co Tre-lawney Sev-erus Mal-foy}
 
 \newcommand{\UnsetValue}{UNSET}
-\newcommand{\CoverAuthor}{\UnsetValue}% Set cover author here, to appear in colophon
-\newcommand{\PdfSourceUrl}{\UnsetValue}% Set URL for the book's source code, to appear in colophon
+\newcommand{\CoverAuthor}{Luca Versari}% Set cover author here, to appear in colophon
+\newcommand{\PdfSourceUrl}{https://github.com/veluca93/hpmor}% Set URL for the book's source code, to appear in colophon
 
 % Check that the cover author and PDF URL are set and if not, print a message to the log
 \newcommand{\CheckIsSet}[1]{{

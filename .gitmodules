@@ -1,0 +1,3 @@
+[submodule "fractal-generator/lodepng"]
+	path = fractal-generator/lodepng
+	url = https://github.com/lvandeve/lodepng.git
